@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aeilus — Mental Wellness, On Your Terms</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:     #F5F0E8;
+      --cream-mid: #EDE6D6;
+      --parchment: #D9CEBC;
+      --sage:      #7D9B76;
+      --sage-deep: #567150;
+      --terra:     #B5603A;
+      --terra-soft:#C97D5A;
+      --bark:      #4A3728;
+      --bark-light:#7A5C48;
+      --ink:       #2C2219;
+      --white:     #FDFAF5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.6;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.4rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(245, 240, 232, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--parchment);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--cream);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terra-soft); }
+    nav.scrolled .nav-links a { color: var(--bark-light); }
+    nav.scrolled .nav-links a:hover { color: var(--terra); }
+    nav.scrolled .nav-logo { color: var(--bark); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 5rem 6rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 4.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--bark);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s forwards;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--terra);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--bark-light);
+      max-width: 420px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.7s forwards;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.9s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: var(--terra);
+      color: var(--white);
+      padding: 1rem 2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+      width: fit-content;
+    }
+    .btn-primary:hover {
+      background: var(--bark);
+      transform: translateY(-2px);
+    }
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    .no-pressure {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--parchment);
+      color: #9A8878;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .no-pressure::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    /* ─── HERO RIGHT: organic shape ─── */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right-inner {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #C4795A 0%, #8B5E3C 40%, #567150 100%);
+      clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    .hero-right-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      background-image: radial-gradient(circle, #F5F0E8 1px, transparent 1px);
+      background-size: 28px 28px;
+      clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    .hero-right-text {
+      position: absolute;
+      bottom: 4rem;
+      left: 4rem;
+      right: 2rem;
+      z-index: 2;
+    }
+    .hero-right-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(253, 250, 245, 0.9);
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeUp 1s 1.1s forwards;
+    }
+    .hero-right-attr {
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(253, 250, 245, 0.5);
+      opacity: 0;
+      animation: fadeUp 1s 1.3s forwards;
+    }
+
+    /* decorative vertical line */
+    .hero-line {
+      position: absolute;
+      top: 8rem;
+      right: 3rem;
+      width: 1px;
+      height: 0;
+      background: rgba(253, 250, 245, 0.25);
+      animation: growLine 1.2s 1.4s forwards;
+    }
+    @keyframes growLine {
+      to { height: 160px; }
+    }
+
+    /* ─── PHILOSOPHY STRIP ─── */
+    .philosophy {
+      background: var(--bark);
+      padding: 4rem 6rem;
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      overflow: hidden;
+    }
+    .philosophy-word {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terra-soft);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .philosophy-divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.15);
+      flex-shrink: 0;
+    }
+    .philosophy-statement {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    /* ─── FREE RESOURCE SECTION ─── */
+    .resource {
+      padding: 8rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .resource-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage-deep);
+      margin-bottom: 1.2rem;
+    }
+
+    .resource-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--bark);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .resource-desc {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--bark-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .resource-features {
+      list-style: none;
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .resource-features li {
+      font-size: 0.88rem;
+      color: var(--bark-light);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .resource-features li::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--terra);
+      flex-shrink: 0;
+    }
+
+    /* workbook mockup */
+    .resource-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .workbook-shadow {
+      position: absolute;
+      width: 260px;
+      height: 340px;
+      background: var(--bark);
+      transform: rotate(4deg) translate(14px, 14px);
+      opacity: 0.12;
+      border-radius: 2px;
+    }
+    .workbook-card {
+      position: relative;
+      width: 260px;
+      height: 340px;
+      background: linear-gradient(160deg, #C4795A 0%, #8B5E3C 100%);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    .workbook-card::before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      right: 2rem;
+      height: 1px;
+      background: rgba(253,250,245,0.25);
+    }
+    .workbook-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(253,250,245,0.06) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .workbook-spine {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 10px;
+      background: rgba(0,0,0,0.2);
+    }
+    .workbook-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(253,250,245,0.95);
+      line-height: 1.3;
+      position: relative;
+      z-index: 2;
+    }
+    .workbook-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(253,250,245,0.55);
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .workbook-emblem {
+      position: absolute;
+      top: 1.8rem;
+      right: 2rem;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(253,250,245,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    .workbook-emblem svg { width: 18px; height: 18px; opacity: 0.6; }
+
+    /* ─── EMAIL CAPTURE ─── */
+    .capture {
+      background: var(--cream-mid);
+      border-top: 1px solid var(--parchment);
+      border-bottom: 1px solid var(--parchment);
+      padding: 6rem;
+      text-align: center;
+    }
+    .capture-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 1.2rem;
+    }
+    .capture-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--bark);
+      margin-bottom: 1rem;
+    }
+    .capture-sub {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--bark-light);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .capture-promise {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: #9A8878;
+      margin-top: 1.2rem;
+    }
+    .email-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+    .email-input {
+      flex: 1;
+      padding: 0.9rem 1.4rem;
+      border: 1px solid var(--parchment);
+      border-right: none;
+      background: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-input:focus { border-color: var(--terra); }
+    .email-input::placeholder { color: #B0A090; }
+    .btn-email {
+      padding: 0.9rem 1.6rem;
+      background: var(--terra);
+      color: var(--white);
+      border: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s;
+      white-space: nowrap;
+    }
+    .btn-email:hover { background: var(--bark); }
+
+    /* ─── PILLARS ─── */
+    .pillars {
+      padding: 8rem 6rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .pillars-header {
+      margin-bottom: 5rem;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 300;
+      color: var(--bark);
+      max-width: 500px;
+      line-height: 1.25;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .pillar {
+      padding: 3rem 2.5rem;
+      background: var(--white);
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .pillar:hover { background: var(--cream-mid); }
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--parchment);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--bark);
+      margin-bottom: 1rem;
+    }
+    .pillar-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--bark-light);
+    }
+
+    /* ─── FOUNDER'S LETTER ─── */
+    .founder {
+      background: var(--bark);
+      padding: 8rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .founder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(245,240,232,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .founder-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .founder-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--terra-soft);
+      margin-bottom: 2rem;
+    }
+    .founder-opening {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.3;
+      margin-bottom: 2.5rem;
+    }
+    .founder-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--terra-soft);
+      margin-bottom: 2.5rem;
+    }
+    .founder-body {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(245,240,232,0.75);
+      margin-bottom: 1.6rem;
+    }
+    .founder-body strong {
+      color: var(--cream);
+      font-weight: 400;
+    }
+    .founder-signature {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(245,240,232,0.1);
+    }
+    .founder-sig-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+    .founder-sig-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terra-soft);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bark);
+      padding: 4rem 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .footer-note {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,240,232,0.35);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 8rem 2rem 4rem; }
+      .hero-right { height: 280px; }
+      .hero-right-inner { clip-path: none; }
+      .hero-right-pattern { clip-path: none; }
+      .philosophy { padding: 3rem 2rem; flex-wrap: wrap; gap: 1.5rem; }
+      .resource { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+      .capture { padding: 4rem 2rem; }
+      .pillars { padding: 5rem 2rem; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; padding: 3rem 2rem; text-align: center; }
+      .email-row { flex-direction: column; }
+      .email-input { border-right: 1px solid var(--parchment); border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Aeilus</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="resources.html">Resources</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Free Mental Wellness Resources — No Barriers</p>
+      <h1 class="hero-headline">
+        You don't have<br>
+        to figure this<br>
+        out <em>alone.</em>
+      </h1>
+      <p class="hero-sub">
+        Aeilus is a free space for anyone navigating anxiety, burnout, or just feeling off. No therapy bills. No sign-ups. No judgment. Just real tools and a place that gets it.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#resources" class="btn-primary">
+          Start here — it's free
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <span class="no-pressure">No sign-up required to explore</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-inner"></div>
+      <div class="hero-right-pattern"></div>
+      <div class="hero-line"></div>
+      <div class="hero-right-text">
+        <p class="hero-right-quote">"You don't have to be in crisis to deserve support. Struggling a little counts too."</p>
+        <p class="hero-right-attr">— The Aeilus Philosophy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY STRIP -->
+  <div class="philosophy">
+    <span class="philosophy-word">Give First</span>
+    <div class="philosophy-divider"></div>
+    <span class="philosophy-word">No Pressure</span>
+    <div class="philosophy-divider"></div>
+    <span class="philosophy-word">Your Pace</span>
+    <div class="philosophy-divider"></div>
+    <p class="philosophy-statement">A different kind of wellness space — one that earns your trust before it asks for anything.</p>
+  </div>
+
+  <!-- FREE RESOURCE -->
+  <section class="resource" id="resources">
+    <div>
+      <p class="resource-label reveal">Free Download</p>
+      <h2 class="resource-title reveal">A workbook to help you find your footing.</h2>
+      <p class="resource-desc reveal">
+        No therapy required. No waitlist. Just a real, free tool you can start using today — wherever you are, however you're feeling.
+      </p>
+      <ul class="resource-features reveal">
+        <li>Guided self-reflection prompts</li>
+        <li>Daily check-in framework</li>
+        <li>Designed for real life, not perfection</li>
+        <li>No email required to download</li>
+      </ul>
+      <a href="https://drive.google.com/uc?export=download&id=1Ajyf1Jctk_a6YIX6-Ebii-sKKmbG-5Sy" target="_blank" class="btn-primary reveal">
+        Download Free Workbook
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </div>
+    <div class="resource-visual reveal">
+      <div class="workbook-shadow"></div>
+      <div class="workbook-card">
+        <div class="workbook-spine"></div>
+        <div class="workbook-emblem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <p class="workbook-title">Finding Your Footing</p>
+        <p class="workbook-sub">A Mental Wellness Workbook — Aeilus</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <section class="capture" id="community">
+    <p class="capture-label reveal">Stay Connected</p>
+    <h2 class="capture-title reveal">When you're ready, we'll be here.</h2>
+    <p class="capture-sub reveal">
+      No daily emails. No sales pitches. Just occasional resources,<br>
+      thoughtful content, and updates — sent only when they're worth your time.
+    </p>
+    <div class="reveal" style="max-width: 500px; margin: 0 auto;">
+      <script async data-uid="889d512c5c" src="https://aeilus.kit.com/889d512c5c/index.js"></script>
+    </div>
+    <p class="capture-promise reveal">Unsubscribe anytime. We mean it.</p>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars" id="about">
+    <div class="pillars-header">
+      <p class="section-label reveal">What Aeilus Is</p>
+      <h2 class="section-title reveal">Built differently, on purpose.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar reveal">
+        <div class="pillar-num">01</div>
+        <h3 class="pillar-title">Actually Free Resources</h3>
+        <p class="pillar-desc">Everything here is free. No paywalls, no premium tiers, no catch. We believe access to mental health tools shouldn't depend on what's in your bank account.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">02</div>
+        <h3 class="pillar-title">Zero Pressure Entry</h3>
+        <p class="pillar-desc">No explaining yourself. No forms before you can look around. You can explore everything Aeilus offers without giving us anything first. That's intentional.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-num">03</div>
+        <h3 class="pillar-title">Warmth Over Metrics</h3>
+        <p class="pillar-desc">Most wellness platforms want to sell you something. Aeilus just wants to help. If you leave feeling even a little better than when you arrived, that's the whole win.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <!-- FOUNDER'S LETTER -->
+  <section class="founder" id="founder">
+    <div class="founder-inner">
+      <p class="founder-label reveal">A Letter from the Founder</p>
+      <h2 class="founder-opening reveal">"I didn't start Aeilus to build an empire."</h2>
+      <div class="founder-rule reveal"></div>
+      <p class="founder-body reveal">
+        I started it because I know what it feels like to need something — a tool, a resource, a moment of clarity — and not have it. And I know I'm not alone in that.
+      </p>
+      <p class="founder-body reveal">
+        Aeilus exists to help people heal. That's it. Everything we create — every journal, every guide, every piece of content — is built around one question: <strong>does this actually help someone?</strong>
+      </p>
+      <p class="founder-body reveal">
+        But there's something else I want you to know.
+      </p>
+      <p class="founder-body reveal">
+        Whatever this brand earns, I intend to give almost all of it away. Not as a marketing strategy. Not for the tax write-off. Because there are people out there right now who don't have food, or a stable home, or access to the mental health support that could change everything for them. A single parent holding it together with nothing left in the tank. Someone sleeping outside tonight who deserves better. People in crisis who just need someone — or something — to show up for them.
+      </p>
+      <p class="founder-body reveal">
+        <strong>I don't need a billion-dollar lifestyle. I need to know that what I'm building means something.</strong>
+      </p>
+      <p class="founder-body reveal">
+        So when you support Aeilus, you're not just investing in your own wellbeing. You're part of something bigger. The two things aren't separate — taking care of yourself and caring about others. That's actually the whole point.
+      </p>
+      <p class="founder-body reveal">Welcome. I'm glad you're here.</p>
+      <div class="founder-signature reveal">
+        <p class="founder-sig-name">— Dominick</p>
+        <p class="founder-sig-title">Founder, Aeilus</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">Aeilus</span>
+    <span class="footer-note">© 2026 Aeilus · Built with intention</span>
+  </footer>
+
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

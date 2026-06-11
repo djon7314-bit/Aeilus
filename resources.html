@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resources — Aeilus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F0E8; --cream-mid: #EDE6D6; --parchment: #D9CEBC;
+      --sage: #7D9B76; --sage-deep: #567150; --terra: #B5603A;
+      --terra-soft: #C97D5A; --bark: #4A3728; --bark-light: #7A5C48;
+      --ink: #2C2219; --white: #FDFAF5; --warm-gray: #9A8878;
+      --crisis: #8B3A3A; --crisis-soft: #C47A7A;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.4rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(245,240,232,0.88); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--parchment);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; letter-spacing: 0.18em; color: var(--bark); text-decoration: none; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bark-light); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--terra); }
+
+    /* CRISIS BANNER */
+    .crisis-banner {
+      background: var(--crisis);
+      padding: 1rem 6rem;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 72px;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .crisis-banner-text { font-size: 0.85rem; font-weight: 400; color: #F5E8E8; line-height: 1.5; }
+    .crisis-banner-text strong { color: white; }
+    .crisis-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .crisis-link {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: white; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.4); padding: 6px 14px;
+      transition: background 0.2s;
+    }
+    .crisis-link:hover { background: rgba(255,255,255,0.15); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 5rem 6rem;
+      background: var(--bark);
+      position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(245,240,232,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .page-header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+    .page-eyebrow { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--terra-soft); margin-bottom: 1.2rem; }
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--cream); line-height: 1.15; margin-bottom: 1.2rem; }
+    .page-title em { font-style: italic; color: var(--terra-soft); }
+    .page-sub { font-size: 1rem; font-weight: 300; color: rgba(245,240,232,0.6); line-height: 1.7; max-width: 540px; }
+    .header-rule { width: 48px; height: 1px; background: var(--terra-soft); margin: 1.8rem 0; }
+
+    /* SECTION STRUCTURE */
+    .resources-body { max-width: 1200px; margin: 0 auto; padding: 6rem 6rem 8rem; }
+    .resource-section { margin-bottom: 5rem; }
+    .resource-section-header { margin-bottom: 2.5rem; }
+    .resource-section-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .eyebrow-crisis { color: var(--crisis-soft); }
+    .eyebrow-free { color: var(--sage-deep); }
+    .eyebrow-tools { color: var(--terra); }
+    .eyebrow-support { color: var(--bark-light); }
+    .resource-section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--bark); line-height: 1.2; }
+    .resource-section-desc { font-size: 0.9rem; font-weight: 300; color: var(--bark-light); line-height: 1.7; margin-top: 0.6rem; max-width: 600px; }
+    .section-rule { width: 100%; height: 1px; background: var(--parchment); margin: 2rem 0; }
+
+    /* RESOURCE CARDS */
+    .resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .resource-card {
+      background: var(--white); padding: 2rem 2.5rem;
+      text-decoration: none; display: block;
+      border-left: 3px solid transparent;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .resource-card:hover { background: var(--cream-mid); }
+    .resource-card.crisis-card { border-left-color: var(--crisis); }
+    .resource-card.crisis-card:hover { border-left-color: var(--crisis); }
+    .resource-card.free-card:hover { border-left-color: var(--sage-deep); }
+    .resource-card.tools-card:hover { border-left-color: var(--terra); }
+    .resource-card.support-card:hover { border-left-color: var(--bark-light); }
+    .resource-card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--bark); margin-bottom: 0.5rem; }
+    .resource-card-desc { font-size: 0.85rem; font-weight: 300; line-height: 1.7; color: var(--bark-light); margin-bottom: 1rem; }
+    .resource-card-contact { font-size: 0.8rem; font-weight: 400; color: var(--terra); letter-spacing: 0.05em; }
+    .resource-card-tag { display: inline-block; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); border: 1px solid var(--parchment); padding: 3px 8px; margin-top: 0.8rem; }
+
+    /* AEILUS FREE RESOURCES */
+    .aeilus-resources { background: var(--bark); padding: 5rem 6rem; }
+    .aeilus-resources-inner { max-width: 1200px; margin: 0 auto; }
+    .aeilus-resources-label { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--terra-soft); margin-bottom: 1.2rem; }
+    .aeilus-resources-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--cream); margin-bottom: 0.8rem; }
+    .aeilus-resources-sub { font-size: 0.9rem; font-weight: 300; color: rgba(245,240,232,0.55); line-height: 1.7; margin-bottom: 3rem; max-width: 500px; }
+    .aeilus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .aeilus-card {
+      background: rgba(245,240,232,0.05); padding: 2.5rem;
+      border: 1px solid rgba(245,240,232,0.08);
+      text-decoration: none; display: flex; flex-direction: column;
+      transition: background 0.25s;
+    }
+    .aeilus-card:hover { background: rgba(245,240,232,0.1); }
+    .aeilus-card-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra-soft); margin-bottom: 1rem; }
+    .aeilus-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; font-style: italic; color: var(--cream); line-height: 1.3; margin-bottom: 1rem; flex: 1; }
+    .aeilus-card-action { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--terra-soft); display: flex; align-items: center; gap: 0.5rem; margin-top: auto; }
+    .aeilus-card-action svg { width: 12px; height: 12px; }
+    .coming { opacity: 0.45; cursor: default; }
+    .coming:hover { background: rgba(245,240,232,0.05); }
+
+    /* FOOTER */
+    footer { background: var(--bark); padding: 3rem 6rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(245,240,232,0.08); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); }
+    .footer-note { font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(245,240,232,0.35); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .crisis-banner { padding: 1rem 1.5rem; }
+      .page-header { padding: 4rem 2rem; }
+      .resources-body { padding: 4rem 2rem 5rem; }
+      .resource-grid { grid-template-columns: 1fr; }
+      .aeilus-resources { padding: 4rem 2rem; }
+      .aeilus-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; padding: 2.5rem 2rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Aeilus</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+    </ul>
+  </nav>
+
+  <!-- CRISIS BANNER -->
+  <div class="crisis-banner">
+    <p class="crisis-banner-text"><strong>If you're in crisis right now,</strong> you don't have to figure it out alone. Free, confidential help is available 24/7.</p>
+    <div class="crisis-links">
+      <a href="tel:988" class="crisis-link">Call or Text 988</a>
+      <a href="sms:741741?body=HELLO" class="crisis-link">Text HOME to 741741</a>
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <p class="page-eyebrow">Aeilus · Resources</p>
+      <h1 class="page-title">Help that doesn't<br><em>cost anything.</em></h1>
+      <div class="header-rule"></div>
+      <p class="page-sub">A curated collection of free mental health resources — crisis support, free therapy options, digital tools, and peer communities. No paywalls. No catch.</p>
+    </div>
+  </div>
+
+  <!-- RESOURCES BODY -->
+  <div class="resources-body">
+
+    <!-- CRISIS RESOURCES -->
+    <div class="resource-section reveal">
+      <div class="resource-section-header">
+        <p class="resource-section-eyebrow eyebrow-crisis">If You Need Help Right Now</p>
+        <h2 class="resource-section-title">Crisis & Emergency Support</h2>
+        <p class="resource-section-desc">These resources are free, confidential, and available around the clock. You don't have to be in a full-blown crisis to reach out — if something feels wrong, that's enough.</p>
+      </div>
+      <div class="resource-grid">
+        <a href="tel:988" class="resource-card crisis-card">
+          <p class="resource-card-name">988 Suicide & Crisis Lifeline</p>
+          <p class="resource-card-desc">Free, confidential support for people in distress. Available 24/7 by call or text. Covers suicidal thoughts, mental health crises, and emotional distress of any kind.</p>
+          <p class="resource-card-contact">Call or Text: 988</p>
+          <span class="resource-card-tag">24/7 · Free · Confidential</span>
+        </a>
+        <a href="sms:741741?body=HELLO" class="resource-card crisis-card">
+          <p class="resource-card-name">Crisis Text Line</p>
+          <p class="resource-card-desc">If talking feels like too much, text HOME to 741741 to connect with a trained crisis counselor. Free, confidential, available 24/7.</p>
+          <p class="resource-card-contact">Text HOME to 741741</p>
+          <span class="resource-card-tag">24/7 · Text-Based · Free</span>
+        </a>
+        <a href="https://www.thetrevorproject.org" target="_blank" class="resource-card crisis-card">
+          <p class="resource-card-name">The Trevor Project</p>
+          <p class="resource-card-desc">Crisis intervention and suicide prevention for LGBTQ+ young people under 25. Call, text, or chat — available 24/7.</p>
+          <p class="resource-card-contact">1-866-488-7386 · Text START to 678-678</p>
+          <span class="resource-card-tag">LGBTQ+ Youth · 24/7 · Free</span>
+        </a>
+        <a href="https://www.samhsa.gov/find-help/national-helpline" target="_blank" class="resource-card crisis-card">
+          <p class="resource-card-name">SAMHSA National Helpline</p>
+          <p class="resource-card-desc">Free, confidential treatment referrals and information for mental health and substance use disorders. Available in English and Spanish.</p>
+          <p class="resource-card-contact">1-800-662-4357</p>
+          <span class="resource-card-tag">24/7 · Free · English & Spanish</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="section-rule"></div>
+
+    <!-- FREE THERAPY -->
+    <div class="resource-section reveal">
+      <div class="resource-section-header">
+        <p class="resource-section-eyebrow eyebrow-free">Low-Cost & Free Therapy</p>
+        <h2 class="resource-section-title">Therapy Without the Price Tag</h2>
+        <p class="resource-section-desc">Therapy is valuable — and it's often inaccessible. These options exist specifically for people who need support but face financial barriers.</p>
+      </div>
+      <div class="resource-grid">
+        <a href="https://openpathcollective.org" target="_blank" class="resource-card free-card">
+          <p class="resource-card-name">Open Path Collective</p>
+          <p class="resource-card-desc">Connects people with therapists who offer sessions at $30–$80 — significantly below standard rates. One-time membership fee of $65 for lifetime access.</p>
+          <p class="resource-card-contact">openpathcollective.org</p>
+          <span class="resource-card-tag">Reduced Cost · Licensed Therapists</span>
+        </a>
+        <a href="https://www.psychologytoday.com/us/therapists" target="_blank" class="resource-card free-card">
+          <p class="resource-card-name">Psychology Today Therapist Finder</p>
+          <p class="resource-card-desc">Search for therapists in your area who offer sliding scale fees — meaning they adjust their rate based on what you can afford.</p>
+          <p class="resource-card-contact">psychologytoday.com</p>
+          <span class="resource-card-tag">Sliding Scale · Search Tool</span>
+        </a>
+        <a href="https://www.nimh.nih.gov/health/topics/mental-health-treatments" target="_blank" class="resource-card free-card">
+          <p class="resource-card-name">NIMH Treatment Locator</p>
+          <p class="resource-card-desc">The National Institute of Mental Health's guide to finding community mental health centers, which often offer free or income-based services.</p>
+          <p class="resource-card-contact">nimh.nih.gov</p>
+          <span class="resource-card-tag">Community Centers · Income-Based</span>
+        </a>
+        <a href="https://www.nami.org/Support-Education/NAMI-HelpLine" target="_blank" class="resource-card free-card">
+          <p class="resource-card-name">NAMI HelpLine</p>
+          <p class="resource-card-desc">Free peer support and resource referrals from the National Alliance on Mental Illness. Not a crisis line — more of a knowledgeable friend who helps you navigate the system.</p>
+          <p class="resource-card-contact">1-800-950-6264</p>
+          <span class="resource-card-tag">Peer Support · Resource Navigation</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="section-rule"></div>
+
+    <!-- FREE DIGITAL TOOLS -->
+    <div class="resource-section reveal">
+      <div class="resource-section-header">
+        <p class="resource-section-eyebrow eyebrow-tools">Apps & Digital Tools</p>
+        <h2 class="resource-section-title">Free Tools for Daily Support</h2>
+        <p class="resource-section-desc">These apps won't replace therapy, but they can meaningfully support your mental health between sessions — or when professional help isn't accessible yet.</p>
+      </div>
+      <div class="resource-grid">
+        <a href="https://www.headspace.com" target="_blank" class="resource-card tools-card">
+          <p class="resource-card-name">Headspace</p>
+          <p class="resource-card-desc">Guided meditation and mindfulness. Offers a free basic tier with foundational practices for stress, anxiety, and sleep.</p>
+          <p class="resource-card-contact">headspace.com</p>
+          <span class="resource-card-tag">Meditation · Free Tier Available</span>
+        </a>
+        <a href="https://www.insighttimer.com" target="_blank" class="resource-card tools-card">
+          <p class="resource-card-name">Insight Timer</p>
+          <p class="resource-card-desc">One of the largest free meditation libraries available. Thousands of guided meditations, sleep content, and mindfulness courses at no cost.</p>
+          <p class="resource-card-contact">insighttimer.com</p>
+          <span class="resource-card-tag">Meditation · Mostly Free</span>
+        </a>
+        <a href="https://woebothealth.com" target="_blank" class="resource-card tools-card">
+          <p class="resource-card-name">Woebot</p>
+          <p class="resource-card-desc">An AI-powered mental health chatbot grounded in CBT principles. Not a replacement for therapy, but a useful, judgment-free space to process thoughts.</p>
+          <p class="resource-card-contact">woebothealth.com</p>
+          <span class="resource-card-tag">CBT-Based · AI Support · Free</span>
+        </a>
+        <a href="https://www.7cups.com" target="_blank" class="resource-card tools-card">
+          <p class="resource-card-name">7 Cups</p>
+          <p class="resource-card-desc">Free online chat with trained volunteer listeners. Not therapists, but real humans who are there to listen without judgment — available anytime.</p>
+          <p class="resource-card-contact">7cups.com</p>
+          <span class="resource-card-tag">Peer Listening · Free · Anonymous</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AEILUS FREE RESOURCES -->
+  <div class="aeilus-resources">
+    <div class="aeilus-resources-inner">
+      <p class="aeilus-resources-label reveal">From Aeilus — Always Free</p>
+      <h2 class="aeilus-resources-title reveal">Our own tools, built for you.</h2>
+      <p class="aeilus-resources-sub reveal">Every resource Aeilus creates is free. No email required, no premium tier, no catch.</p>
+      <div class="aeilus-grid">
+        <a href="https://drive.google.com/uc?export=download&id=1Ajyf1Jctk_a6YIX6-Ebii-sKKmbG-5Sy" class="aeilus-card reveal">
+          <p class="aeilus-card-label">Free Workbook</p>
+          <h3 class="aeilus-card-title">Finding Your Footing</h3>
+          <span class="aeilus-card-action">Download free <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span>
+        </a>
+        <div class="aeilus-card coming reveal">
+          <p class="aeilus-card-label">Coming Soon</p>
+          <h3 class="aeilus-card-title">Anxiety Toolkit</h3>
+          <span class="aeilus-card-action">In development</span>
+        </div>
+        <div class="aeilus-card coming reveal">
+          <p class="aeilus-card-label">Coming Soon</p>
+          <h3 class="aeilus-card-title">Daily Check-In Guide</h3>
+          <span class="aeilus-card-action">In development</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-logo">Aeilus</span>
+    <span class="footer-note">© 2026 Aeilus · Built with intention</span>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
