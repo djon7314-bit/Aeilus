@@ -112,6 +112,37 @@
     .coming-soon:hover { background: var(--white); transform: none; }
     .coming-tag { display: inline-block; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); border: 1px solid var(--parchment); padding: 3px 8px; margin-top: 1rem; }
 
+    /* LIVE ARTICLE CARD */
+    .article-card-live {
+      background: var(--white);
+      padding: 2.5rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      border-left: 3px solid var(--terra);
+      transition: background 0.25s, transform 0.25s;
+      position: relative;
+    }
+    .article-card-live:hover { background: var(--cream-mid); transform: translateY(-3px); }
+    .live-tag {
+      display: inline-block;
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--terra);
+      border: 1px solid var(--terra);
+      padding: 3px 8px;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+    .article-card-live .read-more {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--terra);
+      margin-top: 1rem;
+    }
+    .article-card-live .read-more svg { width: 12px; height: 12px; transition: transform 0.2s; }
+    .article-card-live:hover .read-more svg { transform: translateX(4px); }
+
     /* ARTICLE FULL READ */
     .article-full { display: none; }
     .article-full.active {
@@ -240,12 +271,20 @@
           <p class="article-excerpt">You can be chronically online and profoundly alone. Gen Z knows this better than anyone. Here's why it happens and what helps.</p>
           <span class="coming-tag">Coming Soon</span>
         </div>
-        <div class="article-card coming-soon reveal">
+        <a class="article-card-live reveal" href="#" onclick="showArticle2(); return false;">
+          <span class="live-tag">New · Read Now</span>
           <p class="article-category">Identity · Self-Worth</p>
           <h3 class="article-title">When Your Self-Worth Lives in Your Productivity</h3>
-          <p class="article-excerpt">If rest feels like failure, this one is for you. The quiet crisis of tying your value to what you produce.</p>
-          <span class="coming-tag">Coming Soon</span>
-        </div>
+          <p class="article-excerpt">If rest feels like failure, this one is for you. The quiet crisis of tying your value to what you produce — and the lens it puts on everyone around you.</p>
+          <div class="article-meta">
+            <span>Aeilus</span>
+            <span>·</span>
+            <span>June 2026</span>
+            <span>·</span>
+            <span>9 min read</span>
+          </div>
+          <span class="read-more">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </a>
         <div class="article-card coming-soon reveal">
           <p class="article-category">Anxiety · Daily Life</p>
           <h3 class="article-title">Small Things That Actually Help When Anxiety Spikes</h3>
@@ -317,6 +356,71 @@
     </div>
   </div>
 
+  <!-- FULL ARTICLE 2 VIEW -->
+  <div class="article-full" id="article-view-2">
+    <button class="article-back" onclick="hideArticle2()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Articles
+    </button>
+    <p class="article-header-label">Identity · Self-Worth · Aeilus</p>
+    <h1 class="article-header-title">When Your Self-Worth Lives in Your Productivity</h1>
+    <div class="article-header-meta">
+      <span>Aeilus</span>
+      <span>·</span>
+      <span>June 2026</span>
+      <span>·</span>
+      <span>9 min read</span>
+    </div>
+    <div class="article-header-rule"></div>
+    <div class="article-body">
+      <p>There's a question people ask when they meet someone new. You know the one.</p>
+      <p><em>"So, what do you do?"</em></p>
+      <p>It seems harmless. Conversational. But listen to what it's really asking: <em>who are you, and what are you worth?</em> Because somewhere along the way, we collectively decided that what a person produces is the most important thing about them. That a job title tells you something true. That busyness signals value. That rest is something you earn.</p>
+      <p>Most of us absorbed this so early we don't even remember learning it. And once it's in, it shapes everything.</p>
+      <hr>
+      <h2>The Quiet Pressure</h2>
+      <p>It doesn't always feel like pressure. Sometimes it feels like drive, ambition, purpose. The alarm goes off early and there's something satisfying about it. The packed calendar feels like proof of something. The promotion, the title, the salary — these become measurements not just of professional success but of personal worth.</p>
+      <p>And when they're going well, this belief system is almost invisible. It only surfaces when things stop going well.</p>
+      <p>A job loss. A period of illness. A season of life where you simply can't produce at the pace you're used to. Suddenly the thing that was quietly telling you that you were valuable goes silent — and what's left can feel like nothing.</p>
+      <p>That's when you realize how much weight you'd been putting on something that was never meant to hold it.</p>
+      <hr>
+      <h2>The Lens We Turn on Others</h2>
+      <p>Here's the part that's harder to admit.</p>
+      <p>When you measure your own worth by what you produce, you measure other people the same way. It's not always conscious. But it's there — in the small judgments, the quiet assumptions, the way you categorize people without realizing you're doing it.</p>
+      <p><em>What do they do? Where did they go to school? What have they accomplished?</em></p>
+      <p>You assess people through the same metrics you assess yourself. And the people who don't perform well on those metrics — people who are unemployed, or in "lesser" roles, or who just seem to be moving through life more slowly — get quietly assigned less value in your mind.</p>
+      <p>It's not cruelty. It's the logical extension of a belief system you didn't consciously choose.</p>
+      <p>The problem is that it makes genuine human connection almost impossible. You can't truly see someone when you're looking at their resume. You can't really know a person whose value you've already calculated.</p>
+      <hr>
+      <h2>What Changes When You Let It Go</h2>
+      <p>Something shifts when you start separating people from their productivity. Including yourself.</p>
+      <p>You start noticing things you'd been glossing over. The way someone listens. The warmth they bring into a room. The quiet kindness they extend to people around them without fanfare. The way they've survived things that would have broken someone else.</p>
+      <p>None of that shows up on a LinkedIn profile. None of it is legible to the productivity lens. But it's real — arguably more real than anything a title can tell you.</p>
+      <p>And when you start seeing other people this way, you start seeing yourself this way too.</p>
+      <p>You are not your output. You are not your job title or your salary or your list of achievements. You are something that existed before any of those things and will exist long after they change — because they will change. They always do.</p>
+      <p><strong>Your worth is not a performance review. It never was.</strong></p>
+      <hr>
+      <h2>Signs You're Still Living by the Productivity Metric</h2>
+      <p>It helps to name it clearly. You might still be tying your worth to your output if:</p>
+      <p>You feel vaguely guilty on days when you haven't accomplished much, even if you needed rest.</p>
+      <p>You find it hard to enjoy leisure without mentally justifying it — <em>"I earned this."</em></p>
+      <p>You feel a quiet anxiety when someone asks what you've been up to and you don't have an impressive answer.</p>
+      <p>Your mood on any given day is heavily influenced by how productive you were.</p>
+      <p>You struggle to respect or connect with people whose work or lifestyle you perceive as less ambitious than yours.</p>
+      <p>You apologize for not doing enough, even when nobody asked.</p>
+      <p>If any of those land — you're not broken. You're just running a belief system that was handed to you. And like any belief system, it can be examined and changed.</p>
+      <hr>
+      <h2>A Different Measure</h2>
+      <p>This isn't about abandoning ambition or pretending achievement doesn't matter. It's about putting it in its proper place — as something you do, not something you are.</p>
+      <p>The question isn't <em>"what have you produced?"</em> The question is <em>"who are you when you're not producing anything?"</em></p>
+      <p>That person — the one who exists outside of output and accomplishment and external validation — is the one worth knowing. Worth protecting. Worth building a life around.</p>
+      <p>Start there.</p>
+    </div>
+    <div class="article-cta">
+      <p>Aeilus exists to help you find your way back to yourself. Download our free workbook, <em>Finding Your Footing</em>, at aeilus.com — <a href="https://drive.google.com/uc?export=download&id=1Ajyf1Jctk_a6YIX6-Ebii-sKKmbG-5Sy">no email required.</a></p>
+    </div>
+  </div>
+
   <footer>
     <span class="footer-logo">Aeilus</span>
     <span class="footer-note">© 2026 Aeilus · Built with intention</span>
@@ -326,11 +430,23 @@
     function showArticle() {
       document.getElementById('listing-view').style.display = 'none';
       document.getElementById('article-view').classList.add('active');
+      document.getElementById('article-view-2').classList.remove('active');
       window.scrollTo(0, 0);
     }
     function hideArticle() {
       document.getElementById('listing-view').style.display = 'block';
       document.getElementById('article-view').classList.remove('active');
+      window.scrollTo(0, 0);
+    }
+    function showArticle2() {
+      document.getElementById('listing-view').style.display = 'none';
+      document.getElementById('article-view').classList.remove('active');
+      document.getElementById('article-view-2').classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    function hideArticle2() {
+      document.getElementById('listing-view').style.display = 'block';
+      document.getElementById('article-view-2').classList.remove('active');
       window.scrollTo(0, 0);
     }
     const reveals = document.querySelectorAll('.reveal');
