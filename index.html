@@ -553,6 +553,104 @@
       color: var(--bark-light);
     }
 
+    /* ─── RESET ROOM SECTION ─── */
+    .reset-room {
+      background: #0D1F2D;
+      padding: 8rem 6rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .reset-room::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(122,184,196,0.08) 1px, transparent 1px),
+        radial-gradient(circle, rgba(122,184,196,0.04) 1px, transparent 1px);
+      background-size: 80px 80px, 140px 140px;
+      background-position: 0 0, 40px 40px;
+      pointer-events: none;
+    }
+    .reset-room-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .reset-room-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #7AB8C4;
+      margin-bottom: 1.5rem;
+    }
+    .reset-room-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: #E8EEF2;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .reset-room-title em {
+      font-style: italic;
+      color: #7AB8C4;
+    }
+    .reset-room-rule {
+      width: 48px; height: 1px;
+      background: #2A6B7C;
+      margin: 0 auto 2rem;
+    }
+    .reset-room-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(232,238,242,0.6);
+      margin-bottom: 1.5rem;
+    }
+    .reset-room-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .reset-room-tool {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(122,184,196,0.7);
+      border: 1px solid rgba(122,184,196,0.2);
+      padding: 6px 14px;
+    }
+    .btn-reset-room {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: rgba(42,107,124,0.2);
+      border: 1px solid rgba(122,184,196,0.3);
+      color: #E8EEF2;
+      padding: 1rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-reset-room:hover {
+      background: rgba(42,107,124,0.4);
+      border-color: #7AB8C4;
+      transform: translateY(-2px);
+    }
+    .btn-reset-room svg { width: 16px; height: 16px; }
+    .reset-room-note {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(232,238,242,0.25);
+      margin-top: 1.2rem;
+    }
+
     /* ─── FOUNDER'S LETTER ─── */
     .founder {
       background: var(--bark);
@@ -809,6 +907,33 @@
       </div>
     </div>
   </section>
+
+  <!-- RESET ROOM -->
+  <section class="reset-room">
+    <div class="reset-room-inner">
+      <p class="reset-room-eyebrow reveal">A Free Tool from Aeilus</p>
+      <h2 class="reset-room-title reveal">
+        When you need to reset,<br>
+        <em>right now</em> —
+      </h2>
+      <div class="reset-room-rule reveal"></div>
+      <p class="reset-room-desc reveal">
+        The Reset Room is a free, anonymous space built for the moments when everything feels like too much. No sign-up, no data collected, no record of you being there. Just four tools to help you come back to yourself.
+      </p>
+      <div class="reset-room-tools reveal">
+        <span class="reset-room-tool">Breathe</span>
+        <span class="reset-room-tool">Ground</span>
+        <span class="reset-room-tool">Unsent Letter</span>
+        <span class="reset-room-tool">A Quiet Moment</span>
+      </div>
+      <a href="https://theresetroom.app" target="_blank" class="btn-reset-room reveal">
+        Enter The Reset Room
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p class="reset-room-note reveal">Free · Anonymous · Always open</p>
+    </div>
+  </section>
+
 
   <!-- FOOTER -->
   <!-- FOUNDER'S LETTER -->
