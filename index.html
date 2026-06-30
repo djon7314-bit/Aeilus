@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aeilus — For Men Becoming</title>
+  <meta name="description" content="Still becoming? Welcome. Aeilus is a companion for men in the middle of becoming." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+
+    /* === SPLIT OPENING === */
+    .split-opening {
+      display: grid;
+      grid-template-columns: 1fr 5px 1fr;
+      min-height: 88vh;
+      overflow: hidden;
+    }
+    .split-opening__left {
+      background-color: var(--moon);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .split-opening__left-inner {
+      padding: var(--spacing-xl) var(--spacing-lg);
+      position: relative;
+      z-index: 1;
+    }
+    .split-opening__divider {
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        var(--earth-mid) 15%,
+        var(--dune-dark) 40%,
+        var(--dune) 55%,
+        var(--dune-dark) 70%,
+        var(--earth-mid) 85%,
+        transparent 100%);
+      opacity: 0.65;
+      flex-shrink: 0;
+    }
+    .split-opening__right {
+      background: linear-gradient(160deg, var(--dune-dark) 0%, var(--dune) 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .split-opening__right-inner {
+      padding: var(--spacing-xl) var(--spacing-lg);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* === WELCOME SCREEN — simple word fade === */
+    @keyframes fadeInLogo {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    #welcome-screen {
+      position: fixed;
+      inset: 0;
+      background: #4A2510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      transition: opacity 1.1s ease;
+    }
+    #welcome-screen.fade-out { opacity: 0; pointer-events: none; }
+    .welcome-word {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      color: #FAF6F0;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeInLogo 2.5s ease forwards 0.6s;
+      text-align: center;
+    }
+
+    /* === SPLIT LEFT IDENTITY === */
+    .split-arc {
+      position: absolute;
+      right: -60px; bottom: -100px;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      border: 1px solid rgba(92,46,26,0.1);
+      pointer-events: none;
+    }
+    .split-arc--2 {
+      right: -30px; bottom: -160px;
+      width: 540px; height: 540px;
+      border-color: rgba(92,46,26,0.06);
+    }
+    
+    .split-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--dune-dark);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+    .split-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--earth);
+      margin-bottom: var(--spacing-md);
+    }
+    .split-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+    .split-sub strong { color: var(--dune-dark); font-weight: 600; }
+    .quote-moment__horizon {
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      bottom: -280px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(74,37,16,0.18);
+      pointer-events: none;
+    }
+    .quote-moment__horizon--2 {
+      bottom: -340px; width: 900px; height: 900px;
+      border-color: rgba(74,37,16,0.1);
+    }
+    .quote-moment__horizon--3 {
+      bottom: -380px; width: 1100px; height: 1100px;
+      border-color: rgba(74,37,16,0.06);
+    }
+    .quote-moment__glow {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 160px;
+      background: linear-gradient(to top, rgba(44,26,14,0.22), transparent);
+      pointer-events: none;
+    }
+    .quote-moment__text {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--moon-light);
+      text-shadow: 0 2px 12px rgba(44,26,14,0.3);
+      text-align: center;
+      max-width: 380px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+      padding: 0 var(--spacing-lg);
+    }
+    .split-opening__right {
+      background: linear-gradient(160deg, var(--dune-dark) 0%, var(--dune) 100%) !important;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quote-moment__attribution {
+      position: absolute;
+      bottom: var(--spacing-md);
+      left: 50%; transform: translateX(-50%);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(212,184,150,0.45);
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    /* === WELCOME IDENTITY === */
+    .start-here {
+      padding: var(--spacing-xl) 0;
+    }
+    .start-here__question {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400;
+      color: var(--earth);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .start-here__sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-lg);
+      font-style: italic;
+    }
+    .start-here__options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      max-width: 540px;
+    }
+    .start-option {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 1.6rem;
+      background: var(--moon-light);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--dune-dark);
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+      color: var(--earth);
+      box-shadow: 0 1px 6px rgba(92,46,26,0.06);
+    }
+    .start-option:hover {
+      border-left-color: var(--dune-dark);
+      background: linear-gradient(to right, rgba(15,36,64,0.04), transparent);
+      transform: translateX(5px);
+      box-shadow: 0 4px 18px rgba(92,46,26,0.1);
+    }
+    .start-option__arrow {
+      color: var(--dune-dark);
+      font-size: 1rem;
+      transition: color var(--transition), transform var(--transition);
+      flex-shrink: 0;
+    }
+    .start-option:hover .start-option__arrow {
+      color: var(--dune-dark);
+      transform: translateX(3px);
+    }
+    .start-option__text {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    /* === WELCOME IDENTITY === */
+    .welcome-identity {
+      padding: var(--spacing-xl) 0;
+      background: linear-gradient(135deg, var(--earth) 0%, var(--earth-light) 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .welcome-identity__arc {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -200px;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(168,197,181,0.15);
+      pointer-events: none;
+    }
+    .welcome-identity__arc--2 {
+      bottom: -240px;
+      width: 900px;
+      height: 900px;
+      border-color: rgba(168,197,181,0.08);
+    }
+    .welcome-identity__text {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      color: white;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+    .welcome-identity__text em {
+      font-style: italic;
+      color: var(--dune-light);
+    }
+
+    /* === PILLAR ATMOSPHERES === */
+    .pillar--mind {
+      background: linear-gradient(135deg, var(--moon-light) 0%, rgba(200,216,192,0.2) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar--mind::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 1px solid rgba(15,36,64,0.12);
+      pointer-events: none;
+    }
+    .pillar--body {
+      background: var(--moon-light);
+      border-left-color: var(--dune-dark);
+    }
+    .pillar--fuel {
+      background: linear-gradient(135deg, var(--moon-light) 0%, rgba(92,46,26,0.06) 100%);
+      border-left-color: var(--dune);
+    }
+    .pillar--knowledge {
+      background: var(--moon-light);
+      border-left-color: var(--earth-mid);
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 28px,
+        rgba(92,46,26,0.04) 28px,
+        rgba(92,46,26,0.04) 29px
+      );
+    }
+    .pillar--connection {
+      background: linear-gradient(135deg, rgba(196,149,106,0.1) 0%, var(--moon-light) 100%);
+      border-left-color: var(--dune-dark);
+    }
+
+    [id] { scroll-margin-top: 110px; }
+
+    @media (max-width: 768px) {
+      .split-opening {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 5px auto;
+        min-height: auto;
+      }
+      .split-opening__divider {
+        background: linear-gradient(to right,
+          transparent 0%, var(--earth-mid) 15%, var(--dune-dark) 40%,
+          var(--dune) 55%, var(--dune-dark) 70%, var(--earth-mid) 85%, transparent 100%);
+        height: 5px;
+        width: 100%;
+      }
+      .split-opening__left-inner { padding: var(--spacing-lg) var(--spacing-md); }
+      .split-opening__right { min-height: 55vh; }
+      .quote-moment__horizon { width: 500px; height: 500px; bottom: -180px; }
+      .quote-moment__horizon--2 { width: 680px; height: 680px; }
+      .quote-moment__horizon--3 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PHASE 1: EARTH WELCOME SCREEN -->
+  <div id="welcome-screen">
+    <div style="text-align:center;">
+      <div class="welcome-word">Welcome</div>
+    </div>
+  </div>
+
+  <!-- PHASE 2: INTRO SCREEN -->
+  <div id="intro-screen">
+    <div style="text-align:center;">
+      <div class="intro-logo">Aeilus</div>
+      <div class="intro-tagline">For Men Becoming</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+    <nav>
+    <ul class="nav-left">
+      <li><a href="index.html">Welcome</a></li>
+      <li><a href="journal.html">Journal</a></li>
+    </ul>
+    <div class="nav-center">
+      <a href="index.html" class="nav-logo">Aeilus</a>
+      <span class="nav-tagline">For Men Becoming</span>
+    </div>
+    <ul class="nav-right">
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="shop.html">The Essentials</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- 1+2. SPLIT OPENING — left: identity, right: quote -->
+    <section class="split-opening">
+      <!-- Left: Brand Identity -->
+      <div class="split-opening__left">
+        <div class="split-arc"></div>
+        <div class="split-arc split-arc--2"></div>
+        <div class="split-opening__left-inner">
+          <p class="split-eyebrow entry-reveal">Aeilus</p>
+          <h1 class="split-headline entry-reveal">For Men Becoming.</h1>
+          <p class="split-sub entry-reveal">Mind. Body. Fuel. Knowledge. Connection.<br>Five areas. One practice. The work never stops.</p>
+          <a href="#pillars-top" class="btn btn--navy entry-reveal" style="margin-top: var(--spacing-md);">Start Here</a>
+        </div>
+      </div>
+
+      <!-- Walnut vertical divider -->
+      <div class="split-opening__divider"></div>
+
+      <!-- Right: Quote -->
+      <div class="split-opening__right">
+        <div class="quote-moment__horizon"></div>
+        <div class="quote-moment__horizon quote-moment__horizon--2"></div>
+        <div class="quote-moment__horizon quote-moment__horizon--3"></div>
+        <div class="quote-moment__glow"></div>
+        <div class="split-opening__right-inner">
+          <p class="quote-moment__text reveal">"Nobody arrives. The work is the point."</p>
+          <span class="quote-moment__attribution">Aeilus</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider--thick"></div>
+
+    <!-- 3. START HERE -->
+    <section class="start-here">
+      <div class="container">
+        <p class="section-label reveal">Start Here</p>
+        <h2 class="start-here__question reveal">What brings you here?</h2>
+        <p class="start-here__sub reveal">Choose what feels most true right now. There's no wrong answer.</p>
+        <div class="start-here__options">
+          <a href="#pillars-top" class="start-option reveal">
+            <span class="start-option__arrow">→</span>
+            <span class="start-option__text">I want to take better care of myself</span>
+          </a>
+          <a href="#pillars-top" class="start-option reveal">
+            <span class="start-option__arrow">→</span>
+            <span class="start-option__text">I feel like I'm falling behind</span>
+          </a>
+          <a href="#pillars-top" class="start-option reveal">
+            <span class="start-option__arrow">→</span>
+            <span class="start-option__text">I'm tired of feeling alone</span>
+          </a>
+          <a href="#pillars-top" class="start-option reveal">
+            <span class="start-option__arrow">→</span>
+            <span class="start-option__text">I want to sharpen my mind</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider--thick"></div>
+
+    <!-- 4. WELCOME IDENTITY -->
+    <section class="welcome-identity">
+      <div class="welcome-identity__arc"></div>
+      <div class="welcome-identity__arc welcome-identity__arc--2"></div>
+      <div class="container">
+        <p class="welcome-identity__text reveal">
+          This isn't for men who have it all figured out.<br>
+          <em>It's for the rest of us.</em>
+        </p>
+      </div>
+    </section>
+
+    <div class="walnut-divider--thick"></div>
+
+    <!-- 5. FOUNDER LETTER -->
+    <section>
+      <div class="container">
+        <p class="section-label reveal">From the Founder</p>
+        <div class="letter reveal">
+          <p class="letter__opening">
+            "There is no finish line. And that's not failure — that's just what it means to be human."
+          </p>
+          <p>I built Aeilus because I needed it to exist. Not the polished version of this story — the real one. I've dealt with depression, low energy, loneliness, and the kind of isolation that makes you feel invisible even in a room full of people. I know what it's like to feel like everyone else has something figured out that you don't.</p>
+          <p>I'm still in it. Not the same way I was — but the work never stops. Life ebbs and flows, and the moment you stop tending to yourself, things start to drift back. That's not weakness. That's just the nature of it.</p>
+          <p>What I've learned is that wellness isn't one thing. It's not just the gym, or eating better, or talking to someone. It's all of it working together — how you think, how you move, what you put into your body, what you put into your mind, and who you let into your life. When one of those areas starts slipping, you feel it everywhere.</p>
+          <p>Aeilus exists to give men a real place to work on all of it. No hype. No performance. No pretending you have to have it together to belong here. Just honest tools, real conversations, and a community of men who are willing to keep going.</p>
+          <p>You don't have to be at your worst to be here. You don't have to be at your best either. You just have to be willing.</p>
+          <p>I'm glad you're here.</p>
+          <p class="letter__signature">— Dominick, Founder of Aeilus</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider--thick"></div>
+
+    <!-- 6. FIVE PILLARS -->
+    <section id="pillars-top">
+      <div class="container">
+        <p class="section-label reveal">What We're Built On</p>
+        <h2 class="section-title reveal">The Five Pillars</h2>
+        <p class="section-intro reveal">Wellness isn't one thing. It's everything working together. Neglect one area and you feel it in all the others. Tend to all of them — even imperfectly — and something shifts.</p>
+
+        <div class="pillars-list">
+
+          <div class="pillar pillar--mind reveal">
+            <div class="pillar__number">01</div>
+            <div>
+              <h3 class="pillar__name">Mind</h3>
+              <p class="pillar__text">Everything starts here. Before the gym, before the diet, before any of it — there's the way you think about yourself and the world around you. Most men are never taught emotional intelligence. Nobody sits you down and explains how to process failure, how to manage pressure, how to recognize the stories you tell yourself that aren't true. You just figure it out, or you don't.</p>
+              <p class="pillar__text" style="margin-top:0.75rem;">The mind pillar is about doing that work deliberately. Building resilience not by pretending things don't hurt, but by learning how to move through them. Developing grit not as a performance, but as a quiet internal resource you can actually draw from. The intangibles are what separate men who keep going from men who stop. This is where you build them.</p>
+            </div>
+          </div>
+
+          <div class="walnut-divider"></div>
+
+          <div class="pillar pillar--body reveal" id="body">
+            <div class="pillar__number">02</div>
+            <div>
+              <h3 class="pillar__name">Body</h3>
+              <p class="pillar__text">There's a version of fitness culture that's entirely about aesthetics — how you look, how much you lift, what your body fat percentage is. That's not what we're here for. We're here for the version that keeps you alive and functioning well for the long haul.</p>
+              <p class="pillar__text" style="margin-top:0.75rem;">Your heart, your blood pressure, your cholesterol, your energy levels — these things are quietly determining your quality of life every single day. Movement is medicine. Not punishment, not a performance. The body pillar is about building a relationship with movement that lasts — because it's grounded in something real, not just how you look in a mirror.</p>
+            </div>
+          </div>
+
+          <div class="walnut-divider"></div>
+
+          <div class="pillar pillar--fuel reveal">
+            <div class="pillar__number">03</div>
+            <div>
+              <h3 class="pillar__name">Fuel</h3>
+              <p class="pillar__text">Your brain is an organ. It runs on what you feed it. Most men pay almost no attention to this until something goes wrong — energy crashes, brain fog, mood swings, inflammation. The connection between what you eat and how you think, feel, and function is one of the most underrated conversations in men's wellness.</p>
+              <p class="pillar__text" style="margin-top:0.75rem;">This isn't about restriction or perfection. It's about understanding what your body actually needs and giving it that consistently. Fuel is the pillar that quietly powers all the others. Get this right and everything else becomes more possible.</p>
+            </div>
+          </div>
+
+          <div class="walnut-divider"></div>
+
+          <div class="pillar pillar--knowledge reveal" id="knowledge">
+            <div class="pillar__number">04</div>
+            <div>
+              <h3 class="pillar__name">Knowledge</h3>
+              <p class="pillar__text">There is a compounding effect to learning. The man who reads consistently, thinks critically, and stays curious doesn't just know more — he sees more. He makes better decisions, builds better relationships, and navigates life with a clarity that comes from actually understanding the world he's living in.</p>
+              <p class="pillar__text" style="margin-top:0.75rem;">We live in an age of endless content and very little depth. Most of what we consume doesn't make us sharper — it just fills time. The knowledge pillar is a deliberate push against that. A sharp mind isn't something you're born with. It's something you build, slowly, by choosing what you feed it.</p>
+            </div>
+          </div>
+
+          <div class="walnut-divider"></div>
+
+          <div class="pillar pillar--connection reveal" id="connection">
+            <div class="pillar__number">05</div>
+            <div>
+              <h3 class="pillar__name">Connection</h3>
+              <p class="pillar__text">This one starts with you. Before you can build real relationships with other people, you need to understand yourself — how you're wired, what gives you energy, what drains it. An introvert and an extrovert experience the exact same social situation completely differently. Neither is wrong. But if you don't know which one you are, you'll spend years wondering why certain things feel so hard.</p>
+              <p class="pillar__text" style="margin-top:0.75rem;">Once you understand yourself, connection becomes something you can build intentionally. Not a performance, not networking — but finding the ones who challenge your thinking, who show up when it matters, who make you better just by being honest with you. Deep relationships don't happen by accident.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top: var(--spacing-lg); text-align:center;" class="reveal">
+          <a href="journal.html" class="btn btn--navy">Explore the Journal</a>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer__logo">Aeilus</div>
+      <p class="footer__tagline">For Men Becoming</p>
+      <ul class="footer__links">
+        <li><a href="index.html">Welcome</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="shop.html">The Essentials</a></li>
+      </ul>
+      <p class="footer__copy" style="margin-bottom:0.4rem;"><a href="mailto:hello@aeilus.com" style="color:rgba(212,184,150,0.7);border-bottom:1px solid rgba(212,184,150,0.3);">hello@aeilus.com</a></p>
+      <p class="footer__copy">&copy; 2026 Aeilus. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
