@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community — Aeilus</title>
+  <meta name="description" content="The Aeilus community is coming. A space for men who are doing the work." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .community-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--spacing-xl) var(--spacing-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .community-arc {
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      bottom: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(74,37,16,0.08);
+      pointer-events: none;
+    }
+    .community-arc--2 {
+      bottom: -260px;
+      width: 900px; height: 900px;
+      border-color: rgba(74,37,16,0.05);
+    }
+    .community-hero__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+    }
+    .community-hero__eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--dune-dark);
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+    }
+    .community-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 400;
+      color: var(--earth);
+      line-height: 1.2;
+      margin-bottom: var(--spacing-md);
+    }
+    .community-hero__text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.95;
+      margin-bottom: var(--spacing-lg);
+    }
+    .community-hero__soon {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dune-dark);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="opacity:1;transform:none;">
+    <ul class="nav-left">
+      <li><a href="index.html">Welcome</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="dailypulse.html">Daily Pulse</a></li>
+    </ul>
+    <div class="nav-center">
+      <a href="index.html" class="nav-logo">Aeilus</a>
+      <span class="nav-tagline">For Men Becoming</span>
+    </div>
+    <ul class="nav-right">
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="shop.html">The Essentials</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-overlay" id="navOverlay"></div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="index.html">Welcome</a>
+    <a href="journal.html">Journal</a>
+    <a href="dailypulse.html">Daily Pulse</a>
+    <a href="resources.html">Resources</a>
+    <a href="community.html">Community</a>
+    <a href="shop.html">The Essentials</a>
+  </div>
+
+  <main>
+
+    <section class="community-hero">
+      <div class="community-arc"></div>
+      <div class="community-arc community-arc--2"></div>
+      <div class="community-hero__inner">
+        <p class="community-hero__eyebrow reveal">Coming Soon</p>
+        <h1 class="community-hero__title reveal">You shouldn't have to do this alone.</h1>
+        <p class="community-hero__text reveal">The Aeilus community is being built for men who are doing the work — not performing it. A space for real conversation, honest reflection, and the kind of connection that goes deeper than the surface. No followers. No highlight reels. Just men becoming.</p>
+        <p class="community-hero__soon reveal">Something real is on its way.</p>
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer__logo">Aeilus</div>
+      <p class="footer__tagline">For Men Becoming</p>
+      <ul class="footer__links">
+        <li><a href="index.html">Welcome</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="dailypulse.html">Daily Pulse</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="shop.html">The Essentials</a></li>
+      </ul>
+      <p class="footer__copy" style="margin-bottom:0.4rem;"><a href="mailto:hello@aeilus.com" style="color:rgba(212,184,150,0.7);border-bottom:1px solid rgba(212,184,150,0.3);">hello@aeilus.com</a></p>
+      <p class="footer__copy">&copy; 2026 Aeilus. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
