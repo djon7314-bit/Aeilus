@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Pulse — Aeilus</title>
+  <meta name="description" content="A five-pillar evening reflection. One question per pillar. A few minutes of honest attention to how you actually lived today." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+
+    .pulse-hero {
+      padding: var(--spacing-xl) 0 var(--spacing-lg);
+      text-align: center;
+    }
+    .pulse-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      color: var(--earth);
+      margin-bottom: var(--spacing-sm);
+    }
+    .pulse-hero__sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto var(--spacing-lg);
+      line-height: 1.9;
+    }
+
+    /* === PILLAR CARDS === */
+    .pulse-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md) var(--spacing-xl);
+    }
+
+    .pulse-card {
+      background: var(--moon-light);
+      border-left: 4px solid var(--dune-dark);
+      box-shadow: 0 2px 12px rgba(74,37,16,0.07);
+      padding: var(--spacing-md) var(--spacing-lg);
+      position: relative;
+    }
+    .pulse-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--earth), var(--dune-dark), var(--dune), var(--dune-light), var(--dune), var(--dune-dark), var(--earth));
+    }
+    .pulse-card--mind { border-left-color: var(--dune); }
+    .pulse-card--body { border-left-color: var(--earth-mid); }
+    .pulse-card--fuel { border-left-color: var(--earth-light); }
+    .pulse-card--knowledge { border-left-color: var(--earth); }
+    .pulse-card--connection { border-left-color: var(--dune-dark); }
+
+    .pulse-card__number {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--dune-dark);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .pulse-card__pillar {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--earth);
+      margin-bottom: var(--spacing-xs);
+    }
+    .pulse-card__question {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-md);
+      line-height: 1.5;
+    }
+
+    /* === SCALE === */
+    .pulse-scale {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+    .pulse-scale__label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      min-width: 90px;
+    }
+    .pulse-scale__label--right {
+      text-align: right;
+      min-width: 90px;
+    }
+    .pulse-scale__dots {
+      display: flex;
+      gap: 0.6rem;
+      flex: 1;
+      justify-content: center;
+    }
+    .pulse-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid var(--dune-dark);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--dune-dark);
+      font-family: var(--font-display);
+    }
+    .pulse-dot:hover {
+      background: var(--dune-pale);
+      border-color: var(--earth);
+    }
+    .pulse-dot.selected {
+      background: var(--earth);
+      border-color: var(--earth);
+      color: var(--moon-light);
+    }
+
+    /* === PROMPT === */
+    .pulse-card__prompt {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-style: italic;
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: rgba(74,37,16,0.04);
+      border-left: 2px solid var(--dune-pale);
+      margin-top: var(--spacing-sm);
+    }
+
+    /* === CLOSING NOTE === */
+    .pulse-closing {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: var(--spacing-lg) var(--spacing-md) var(--spacing-xl);
+      text-align: center;
+    }
+    .pulse-closing__divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, var(--dune-dark), var(--dune-light));
+      margin: 0 auto var(--spacing-md);
+      opacity: 0.6;
+    }
+    .pulse-closing__text {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--earth);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    .pulse-closing__sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      max-width: 480px;
+      margin: 0 auto var(--spacing-lg);
+    }
+    .pulse-closing__sub a {
+      color: var(--earth-light);
+      border-bottom: 1px solid var(--dune-pale);
+      transition: border-color 0.3s;
+    }
+    .pulse-closing__sub a:hover { border-bottom-color: var(--earth-light); }
+
+    @media (max-width: 640px) {
+      .pulse-card { padding: var(--spacing-md); }
+      .pulse-scale { flex-direction: column; align-items: flex-start; }
+      .pulse-scale__dots { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul class="nav-left">
+      <li><a href="index.html">Welcome</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="dailypulse.html">Daily Pulse</a></li>
+    </ul>
+    <div class="nav-center">
+      <a href="index.html" class="nav-logo">Aeilus</a>
+      <span class="nav-tagline">For Men Becoming</span>
+    </div>
+    <ul class="nav-right">
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="shop.html">The Essentials</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-overlay" id="navOverlay"></div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="index.html">Welcome</a>
+    <a href="journal.html">Journal</a>
+    <a href="dailypulse.html">Daily Pulse</a>
+    <a href="resources.html">Resources</a>
+    <a href="community.html">Community</a>
+    <a href="shop.html">The Essentials</a>
+  </div>
+
+  <main>
+
+    <section class="pulse-hero">
+      <div class="container">
+        <p class="section-label reveal">Evening Ritual</p>
+        <h1 class="pulse-hero__title reveal">Daily Pulse</h1>
+        <p class="pulse-hero__sub reveal">Five pillars. Five questions. A few honest minutes at the end of the day. This isn't a performance — it's just you, checking in with yourself.</p>
+      </div>
+    </section>
+
+    <div class="walnut-divider--thick"></div>
+
+    <div class="pulse-pillars">
+
+      <!-- MIND -->
+      <div class="pulse-card pulse-card--mind reveal">
+        <p class="pulse-card__number">Pillar 01</p>
+        <h2 class="pulse-card__pillar">Mind</h2>
+        <p class="pulse-card__question">"How present were you with yourself today?"</p>
+        <div class="pulse-scale">
+          <span class="pulse-scale__label">Scattered</span>
+          <div class="pulse-scale__dots">
+            <button class="pulse-dot" data-pillar="mind" data-value="1">1</button>
+            <button class="pulse-dot" data-pillar="mind" data-value="2">2</button>
+            <button class="pulse-dot" data-pillar="mind" data-value="3">3</button>
+            <button class="pulse-dot" data-pillar="mind" data-value="4">4</button>
+            <button class="pulse-dot" data-pillar="mind" data-value="5">5</button>
+          </div>
+          <span class="pulse-scale__label pulse-scale__label--right">Grounded</span>
+        </div>
+        <p class="pulse-card__prompt">What was your mind carrying today? What do you want to leave here before tomorrow?</p>
+      </div>
+
+      <!-- BODY -->
+      <div class="pulse-card pulse-card--body reveal">
+        <p class="pulse-card__number">Pillar 02</p>
+        <h2 class="pulse-card__pillar">Body</h2>
+        <p class="pulse-card__question">"How did you treat your body today?"</p>
+        <div class="pulse-scale">
+          <span class="pulse-scale__label">Neglected</span>
+          <div class="pulse-scale__dots">
+            <button class="pulse-dot" data-pillar="body" data-value="1">1</button>
+            <button class="pulse-dot" data-pillar="body" data-value="2">2</button>
+            <button class="pulse-dot" data-pillar="body" data-value="3">3</button>
+            <button class="pulse-dot" data-pillar="body" data-value="4">4</button>
+            <button class="pulse-dot" data-pillar="body" data-value="5">5</button>
+          </div>
+          <span class="pulse-scale__label pulse-scale__label--right">Intentional</span>
+        </div>
+        <p class="pulse-card__prompt">Did you move, rest, or listen to what your body needed? What did it tell you?</p>
+      </div>
+
+      <!-- FUEL -->
+      <div class="pulse-card pulse-card--fuel reveal">
+        <p class="pulse-card__number">Pillar 03</p>
+        <h2 class="pulse-card__pillar">Fuel</h2>
+        <p class="pulse-card__question">"What did you put into yourself today?"</p>
+        <div class="pulse-scale">
+          <span class="pulse-scale__label">Running on empty</span>
+          <div class="pulse-scale__dots">
+            <button class="pulse-dot" data-pillar="fuel" data-value="1">1</button>
+            <button class="pulse-dot" data-pillar="fuel" data-value="2">2</button>
+            <button class="pulse-dot" data-pillar="fuel" data-value="3">3</button>
+            <button class="pulse-dot" data-pillar="fuel" data-value="4">4</button>
+            <button class="pulse-dot" data-pillar="fuel" data-value="5">5</button>
+          </div>
+          <span class="pulse-scale__label pulse-scale__label--right">Nourished</span>
+        </div>
+        <p class="pulse-card__prompt">Food, water, what you consumed mentally — did it serve you? What would you change tomorrow?</p>
+      </div>
+
+      <!-- KNOWLEDGE -->
+      <div class="pulse-card pulse-card--knowledge reveal">
+        <p class="pulse-card__number">Pillar 04</p>
+        <h2 class="pulse-card__pillar">Knowledge</h2>
+        <p class="pulse-card__question">"Did you feed your mind something worthwhile today?"</p>
+        <div class="pulse-scale">
+          <span class="pulse-scale__label">Autopilot</span>
+          <div class="pulse-scale__dots">
+            <button class="pulse-dot" data-pillar="knowledge" data-value="1">1</button>
+            <button class="pulse-dot" data-pillar="knowledge" data-value="2">2</button>
+            <button class="pulse-dot" data-pillar="knowledge" data-value="3">3</button>
+            <button class="pulse-dot" data-pillar="knowledge" data-value="4">4</button>
+            <button class="pulse-dot" data-pillar="knowledge" data-value="5">5</button>
+          </div>
+          <span class="pulse-scale__label pulse-scale__label--right">Intentional</span>
+        </div>
+        <p class="pulse-card__prompt">What did you read, learn, or think about? What's one thing that stayed with you?</p>
+      </div>
+
+      <!-- CONNECTION -->
+      <div class="pulse-card pulse-card--connection reveal">
+        <p class="pulse-card__number">Pillar 05</p>
+        <h2 class="pulse-card__pillar">Connection</h2>
+        <p class="pulse-card__question">"How did you show up for yourself and others today?"</p>
+        <div class="pulse-scale">
+          <span class="pulse-scale__label">Isolated</span>
+          <div class="pulse-scale__dots">
+            <button class="pulse-dot" data-pillar="connection" data-value="1">1</button>
+            <button class="pulse-dot" data-pillar="connection" data-value="2">2</button>
+            <button class="pulse-dot" data-pillar="connection" data-value="3">3</button>
+            <button class="pulse-dot" data-pillar="connection" data-value="4">4</button>
+            <button class="pulse-dot" data-pillar="connection" data-value="5">5</button>
+          </div>
+          <span class="pulse-scale__label pulse-scale__label--right">Connected</span>
+        </div>
+        <p class="pulse-card__prompt">Did you have a real conversation? Did you honor your own energy? What did connection feel like today?</p>
+      </div>
+
+    </div>
+
+    <div class="walnut-divider--thick"></div>
+
+    <!-- CLOSING NOTE -->
+    <section class="pulse-closing reveal">
+      <div class="pulse-closing__divider"></div>
+      <p class="pulse-closing__text">"Take these reflections off the screen. Write them down."</p>
+      <p class="pulse-closing__sub">Your future self will want to read this. A journal captures what a screen can't hold — the pattern of your days, the arc of your becoming. Any journal works. But if you want one built around this practice, the <a href="shop.html">Aeilus Journal</a> was made for exactly this.</p>
+      <a href="shop.html" class="btn btn--navy">The Aeilus Journal</a>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer__logo">Aeilus</div>
+      <p class="footer__tagline">For Men Becoming</p>
+      <ul class="footer__links">
+        <li><a href="index.html">Welcome</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="dailypulse.html">Daily Pulse</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="shop.html">The Essentials</a></li>
+      </ul>
+      <p class="footer__copy" style="margin-bottom:0.4rem;"><a href="mailto:hello@aeilus.com" style="color:rgba(212,184,150,0.7);border-bottom:1px solid rgba(212,184,150,0.3);">hello@aeilus.com</a></p>
+      <p class="footer__copy">&copy; 2026 Aeilus. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Scale dot selection
+    document.querySelectorAll('.pulse-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const pillar = dot.dataset.pillar;
+        document.querySelectorAll(`.pulse-dot[data-pillar="${pillar}"]`).forEach(d => d.classList.remove('selected'));
+        dot.classList.add('selected');
+      });
+    });
+  </script>
+</body>
+</html>
