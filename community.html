@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community — Aeilus</title>
+  <meta name="description" content="The Aeilus community is coming. A space for men who are doing the work." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .community-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--spacing-xl) var(--spacing-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .community-arc {
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      bottom: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(74,37,16,0.08);
+      pointer-events: none;
+    }
+    .community-arc--2 {
+      bottom: -260px;
+      width: 900px; height: 900px;
+      border-color: rgba(74,37,16,0.05);
+    }
+    .community-hero__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+    }
+    .community-hero__eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--dune-dark);
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+    }
+    .community-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 400;
+      color: var(--earth);
+      line-height: 1.2;
+      margin-bottom: var(--spacing-md);
+    }
+    .community-hero__text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.95;
+      margin-bottom: var(--spacing-lg);
+    }
+    .community-hero__soon {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dune-dark);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="opacity:1;transform:none;">
+    <ul class="nav-left">
+      <li><a href="index.html">Welcome</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="dailypulse.html">Daily Pulse</a></li>
+    </ul>
+    <div class="nav-center">
+      <a href="index.html" class="nav-logo">Aeilus</a>
+      <span class="nav-tagline">For Men Becoming</span>
+    </div>
+    <ul class="nav-right">
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="shop.html">The Essentials</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-overlay" id="navOverlay"></div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="index.html">Welcome</a>
+    <a href="journal.html">Journal</a>
+    <a href="dailypulse.html">Daily Pulse</a>
+    <a href="resources.html">Resources</a>
+    <a href="community.html">Community</a>
+    <a href="shop.html">The Essentials</a>
+  </div>
+
+  <main>
+
+    <section class="community-hero">
+      <div class="community-arc"></div>
+      <div class="community-arc community-arc--2"></div>
+      <div class="community-hero__inner">
+        <p class="community-hero__eyebrow reveal">Coming Soon</p>
+        <h1 class="community-hero__title reveal">You shouldn't have to do this alone.</h1>
+        <p class="community-hero__text reveal">The Aeilus community is being built for men who are doing the work — not performing it. A space for real conversation, honest reflection, and the kind of connection that goes deeper than the surface. No followers. No highlight reels. Just men becoming.</p>
+        <p class="community-hero__soon reveal">Something real is on its way.</p>
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+    <!-- SHARE YOUR BECOMING -->
+    <section class="syb-section" style="--moon:#F0E8DC; --dune:#C4956A; --earth:#4A2510; background-color:var(--moon); color:var(--earth); padding:80px 24px; position:relative; overflow:hidden;">
+      <div style="max-width:640px; margin:0 auto; position:relative;">
+        <p style="font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--dune); font-weight:600; margin:0 0 20px;">Connection</p>
+        <h2 style="font-family:var(--font-display); font-weight:500; font-size:clamp(28px,5vw,40px); line-height:1.15; margin:0 0 24px;">Share Your Becoming</h2>
+        <p style="font-size:17px; line-height:1.7; color:rgba(74,37,16,0.85); margin:0 0 16px;">You don't have to have it figured out to belong here. Some of the most honest moments of growth happen quietly — a decision made, a habit broken, a conversation that changed something. We want to hear yours.</p>
+        <p style="font-size:17px; line-height:1.7; color:rgba(74,37,16,0.85); margin:0 0 16px;">This isn't about having the perfect story or the polished ending. It's about being honest with where you've been and where you're headed.</p>
+
+        <div style="margin:32px 0 40px; padding:28px 28px 28px 24px; background:rgba(196,149,106,0.12); border-left:2px solid var(--dune);">
+          <p style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--dune); font-weight:600; margin:0 0 14px;">A few starting points, if you need them</p>
+          <ul style="margin:0; padding:0; list-style:none;">
+            <li style="font-size:15.5px; line-height:1.6; margin-bottom:10px; padding-left:18px; position:relative;">— A moment you realized you were becoming someone different than before</li>
+            <li style="font-size:15.5px; line-height:1.6; margin-bottom:10px; padding-left:18px; position:relative;">— Something you had to unlearn</li>
+            <li style="font-size:15.5px; line-height:1.6; margin-bottom:10px; padding-left:18px; position:relative;">— A small daily practice that's quietly changed you</li>
+            <li style="font-size:15.5px; line-height:1.6; margin-bottom:0; padding-left:18px; position:relative;">— A relationship — with yourself, a parent, a partner — you're still working through</li>
+          </ul>
+        </div>
+
+        <form action="https://formspree.io/f/meeyvqgg" method="POST" style="display:flex; flex-direction:column; gap:22px;">
+          <div>
+            <label for="syb-name" style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">What should we call you?</label>
+            <input type="text" id="syb-name" name="name" placeholder="Name, first name only, or &ldquo;Anonymous&rdquo;" style="width:100%; box-sizing:border-box; font-family:'Inter',sans-serif; font-size:15.5px; padding:13px 14px; border:1px solid rgba(74,37,16,0.25); border-radius:4px; background:#fff; color:var(--earth);">
+          </div>
+
+          <div>
+            <label for="syb-story" style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">What's the moment or shift you want to share?</label>
+            <textarea id="syb-story" name="story" required placeholder="A few sentences to a few paragraphs — however much it takes." style="width:100%; box-sizing:border-box; font-family:'Inter',sans-serif; font-size:15.5px; padding:13px 14px; border:1px solid rgba(74,37,16,0.25); border-radius:4px; background:#fff; color:var(--earth); min-height:130px; resize:vertical;"></textarea>
+          </div>
+
+          <div>
+            <label for="syb-pillar" style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">Which pillar does this touch most? <span style="font-weight:400; color:rgba(74,37,16,0.5);">(optional)</span></label>
+            <select id="syb-pillar" name="pillar" style="width:100%; box-sizing:border-box; font-family:'Inter',sans-serif; font-size:15.5px; padding:13px 14px; border:1px solid rgba(74,37,16,0.25); border-radius:4px; background:#fff; color:var(--earth);">
+              <option value="">Select one</option>
+              <option value="mind">Mind</option>
+              <option value="body">Body</option>
+              <option value="fuel">Fuel</option>
+              <option value="knowledge">Knowledge</option>
+              <option value="connection">Connection</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">Can we feature this on Aeilus?</label>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <label style="display:flex; align-items:center; gap:10px; font-size:15px;"><input type="radio" name="permission" value="named" required style="accent-color:var(--dune); width:16px; height:16px;"> Yes, with my name</label>
+              <label style="display:flex; align-items:center; gap:10px; font-size:15px;"><input type="radio" name="permission" value="anonymous" required style="accent-color:var(--dune); width:16px; height:16px;"> Yes, but keep me anonymous</label>
+              <label style="display:flex; align-items:center; gap:10px; font-size:15px;"><input type="radio" name="permission" value="private" required style="accent-color:var(--dune); width:16px; height:16px;"> Not yet — just wanted to share</label>
+            </div>
+          </div>
+
+          <div>
+            <label for="syb-notes" style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">Anything else you want us to know? <span style="font-weight:400; color:rgba(74,37,16,0.5);">(optional)</span></label>
+            <textarea id="syb-notes" name="notes" style="width:100%; box-sizing:border-box; font-family:'Inter',sans-serif; font-size:15.5px; padding:13px 14px; border:1px solid rgba(74,37,16,0.25); border-radius:4px; background:#fff; color:var(--earth); min-height:80px; resize:vertical;"></textarea>
+          </div>
+
+          <button type="submit" style="align-self:flex-start; margin-top:8px; background:var(--earth); color:var(--moon); border:none; font-family:'Inter',sans-serif; font-weight:600; font-size:15px; letter-spacing:0.02em; padding:14px 32px; border-radius:4px; cursor:pointer;">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer__logo">Aeilus</div>
+      <p class="footer__tagline">For Men Becoming</p>
+      <ul class="footer__links">
+        <li><a href="index.html">Welcome</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="dailypulse.html">Daily Pulse</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="shop.html">The Essentials</a></li>
+      </ul>
+      <div class="footer__signup" style="max-width:320px;margin:1.75rem auto 0;padding-top:1.25rem;border-top:1px solid rgba(212,184,150,0.15);text-align:center;">
+        <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.9rem;color:rgba(212,184,150,0.85);margin:0 0 0.85rem;">For men becoming. One reflection a week.</p>
+        <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1784810");</style>
+        <style type="text/css">
+          #mlb2-44145290.ml-form-embedContainer{box-sizing:border-box;display:table;margin:0 auto;width:100%!important;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedWrapper.embedForm{max-width:320px;width:100%;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-align-center{text-align:center;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedBody{padding:0;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-fieldRow{margin:0 0 10px 0;width:100%;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedSubmit{margin:0;float:none;width:100%;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedWrapper{background-color:transparent!important;}
+          #mlb2-44145290.ml-form-embedContainer input[name="fields[email]"]{font-family:'Inter',sans-serif!important;background:transparent!important;border:1px solid rgba(212,184,150,0.4)!important;color:rgba(250,246,240,0.95)!important;padding:9px 14px!important;border-radius:2px!important;text-align:center;font-size:13px!important;}
+          #mlb2-44145290.ml-form-embedContainer input[name="fields[email]"]::placeholder{color:rgba(212,184,150,0.6)!important;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedSubmit button{font-family:'Inter',sans-serif!important;background-color:rgba(212,184,150,0.9)!important;color:#4A2510!important;border:none!important;padding:9px 18px!important;border-radius:2px!important;font-weight:600!important;font-size:13px!important;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedSubmit button:hover{background-color:#FAF6F0!important;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-successContent h4,#mlb2-44145290.ml-form-embedContainer .ml-form-successContent p{font-family:'Inter',sans-serif!important;color:rgba(212,184,150,0.9)!important;font-size:13px!important;}
+          .ml-form-embedSubmitLoad{display:inline-block;width:20px;height:20px;}
+          .ml-form-embedSubmitLoad:after{content:" ";display:block;width:11px;height:11px;margin:1px;border-radius:50%;border:4px solid #fff;border-color:#fff #fff #fff transparent;animation:ml-form-embedSubmitLoad 1.2s linear infinite;}
+          @keyframes ml-form-embedSubmitLoad{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+          .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+        </style>
+        <div id="mlb2-44145290" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-44145290">
+          <div class="ml-form-align-center ">
+            <div class="ml-form-embedWrapper embedForm">
+              <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                <div class="ml-form-embedContent" style="margin-bottom:0px;"></div>
+                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2534542/forms/194062937176933829/subscribe" data-code="" method="post" target="_blank">
+                  <div class="ml-form-formContent">
+                    <div class="ml-form-fieldRow ml-last-item">
+                      <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                        <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Email" autocomplete="email">
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="fields[signup_source]" value="footer">
+                  <input type="hidden" name="ml-submit" value="1">
+                  <div class="ml-form-embedSubmit">
+                    <button type="submit" class="primary">Subscribe</button>
+                    <button disabled="disabled" style="display:none;" type="button" class="loading">
+                      <div class="ml-form-embedSubmitLoad"></div>
+                      <span class="sr-only">Loading...</span>
+                    </button>
+                  </div>
+                  <input type="hidden" name="anticsrf" value="true">
+                </form>
+              </div>
+              <div class="ml-form-successBody row-success" style="display:none">
+                <div class="ml-form-successContent">
+                  <h4>Thank you!</h4>
+                  <p>You have successfully joined our subscriber list.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          function ml_webform_success_44145290() {
+            var $ = ml_jQuery || jQuery;
+            $('.ml-subscribe-form-44145290 .row-success').show();
+            $('.ml-subscribe-form-44145290 .row-form').hide();
+          }
+        </script>
+        <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+        <script>fetch("https://assets.mailerlite.com/jsonp/2534542/forms/194062937176933829/takel")</script>
+      </div>
+
+      <p class="footer__copy" style="margin-bottom:0.4rem;"><a href="mailto:hello@aeilus.com" style="color:rgba(212,184,150,0.7);border-bottom:1px solid rgba(212,184,150,0.3);">hello@aeilus.com</a></p>
+      <p class="footer__copy">&copy; 2026 Aeilus. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

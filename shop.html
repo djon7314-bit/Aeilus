@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Essentials — Aeilus</title>
+  <meta name="description" content="Ten things. Two per pillar. Curated, not cataloged." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+
+    /* === ESSENTIALS PAGE === */
+    .essentials-intro {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
+      text-align: center;
+    }
+    .essentials-intro__note {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.95;
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: var(--moon-light);
+      border-left: 4px solid var(--dune-dark);
+      box-shadow: 0 2px 12px rgba(74,37,16,0.07);
+      text-align: left;
+    }
+    .essentials-intro__note strong { color: var(--text); font-weight: 500; }
+
+    /* === PILLAR SECTION === */
+    .pillar-section {
+      padding: var(--spacing-xl) 0;
+    }
+    .pillar-section__inner {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+    .pillar-section__header {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+    }
+    .pillar-section__eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--dune-dark);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .pillar-section__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400;
+      color: var(--earth);
+      line-height: 1.2;
+    }
+
+    /* === PRODUCT GRID === */
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card__image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--moon-deep);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: var(--spacing-md);
+      position: relative;
+    }
+    .product-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .product-card__image img:hover { transform: scale(1.03); }
+    .product-card__image--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dune-dark);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .product-card__name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--earth);
+      margin-bottom: 0.25rem;
+    }
+    .product-card__price {
+      font-size: 0.88rem;
+      color: var(--dune-dark);
+      font-style: italic;
+      margin-bottom: var(--spacing-sm);
+    }
+    .product-card__note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      flex-grow: 1;
+      margin-bottom: var(--spacing-md);
+    }
+    .product-card__link {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--earth);
+      border-bottom: 1px solid var(--dune);
+      padding-bottom: 3px;
+      align-self: flex-start;
+      transition: opacity 0.2s ease;
+      font-weight: 500;
+    }
+    .product-card__link:hover { opacity: 0.65; }
+
+    @media (max-width: 640px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="opacity:1;transform:none;">
+    <ul class="nav-left">
+      <li><a href="index.html">Welcome</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="dailypulse.html">Daily Pulse</a></li>
+    </ul>
+    <div class="nav-center">
+      <a href="index.html" class="nav-logo">Aeilus</a>
+      <span class="nav-tagline">For Men Becoming</span>
+    </div>
+    <ul class="nav-right">
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="community.html">Community</a></li>
+      <li><a href="shop.html">The Essentials</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-overlay" id="navOverlay"></div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="index.html">Welcome</a>
+    <a href="journal.html">Journal</a>
+    <a href="dailypulse.html">Daily Pulse</a>
+    <a href="resources.html">Resources</a>
+    <a href="community.html">Community</a>
+    <a href="shop.html">The Essentials</a>
+  </div>
+
+  <main>
+
+    <!-- PAGE HEADER -->
+    <section style="padding-top: var(--spacing-xl); padding-bottom: 0;">
+      <div class="essentials-intro reveal">
+        <p class="section-label">Curated, Not Cataloged</p>
+        <h1 class="section-title">The Essentials</h1>
+        <p class="section-intro">Ten things. That's it. Not because there's nothing else worth having — but because a page of fifty options isn't a recommendation, it's a catalog. Everything here earned its spot: two picks per pillar, a real range of price points, and if I've actually used it myself, I'll tell you.</p>
+        <div class="essentials-intro__note">
+          <p><strong>A note on how this works.</strong> Everything here is organized by pillar — the five areas Aeilus is built around. Some links are affiliate links, which means Aeilus earns a small commission if you purchase through them at no extra cost to you. That never influences what makes the list. If I wouldn't buy it myself, it won't be here. The standard is simple: <strong>who makes the best version of this?</strong> That's the only question that matters.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider--thick"></div>
+
+    <!-- MIND -->
+    <section class="pillar-section" id="mind">
+      <div class="pillar-section__inner">
+        <div class="pillar-section__header reveal">
+          <p class="pillar-section__eyebrow">Pillar One</p>
+          <h2 class="pillar-section__title">Mind</h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/aeilus-journal.png" alt="The Aeilus Journal cover — For Men Becoming" />
+            </div>
+            <h3 class="product-card__name">The Aeilus Journal</h3>
+            <p class="product-card__price">$13.99</p>
+            <p class="product-card__note">Some things are better on paper. Five pillars built into the structure, sixteen weeks of daily prompts, and just enough guidance to get you writing without telling you what to think.</p>
+            <a href="https://amzn.to/3T2f6ct" class="product-card__link" target="_blank" rel="noopener">Shop the Journal</a>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/seed-am02.png" alt="Seed AM-02 Energy + Focus dietary supplement" />
+            </div>
+            <h3 class="product-card__name">Seed AM-02 Energy + Focus</h3>
+            <p class="product-card__price">$34.99</p>
+            <p class="product-card__note">A caffeine-free nootropic built for fast-acting and sustained energy — up to six hours, no crash. Vegan, shelf-stable, one capsule a day.</p>
+            <a href="https://amzn.to/4wkhDx8" class="product-card__link" target="_blank" rel="noopener">Shop Seed</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+    <!-- BODY -->
+    <section class="pillar-section" id="body">
+      <div class="pillar-section__inner">
+        <div class="pillar-section__header reveal">
+          <p class="pillar-section__eyebrow">Pillar Two</p>
+          <h2 class="pillar-section__title">Body</h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/snap-heart-beets.png" alt="SNAP Heart Beets cardiovascular superfood powder" />
+            </div>
+            <h3 class="product-card__name">SNAP Heart Beets</h3>
+            <p class="product-card__price">$33.96</p>
+            <p class="product-card__note">Beet root and pomegranate, built for cardiovascular health and blood flow. One scoop, mixed berry flavor, no excuse not to have it.</p>
+            <a href="https://go.shopmy.us/p-69118712" class="product-card__link" target="_blank" rel="noopener">Shop SNAP</a>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/goruck-vest.png" alt="GORUCK Rucking Weighted Vest" />
+            </div>
+            <h3 class="product-card__name">GORUCK Rucking Weighted Vest</h3>
+            <p class="product-card__price">$155.00</p>
+            <p class="product-card__note">Rucking's had a real moment lately, and it's not hype — loading a vest and walking is one of the simplest ways to build strength without a gym membership.</p>
+            <a href="https://amzn.to/4vkqY78" class="product-card__link" target="_blank" rel="noopener">Shop GORUCK</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+    <!-- FUEL -->
+    <section class="pillar-section" id="fuel">
+      <div class="pillar-section__inner">
+        <div class="pillar-section__header reveal">
+          <p class="pillar-section__eyebrow">Pillar Three</p>
+          <h2 class="pillar-section__title">Fuel</h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/ag1.png" alt="AG1 Daily Foundational Nutrition greens powder" />
+            </div>
+            <h3 class="product-card__name">AG1 Starter Kit</h3>
+            <p class="product-card__price">$109.99</p>
+            <p class="product-card__note">Daily foundational nutrition, greens powder, shaker and scoop included. Not a replacement for eating well — a floor under the days you don't.</p>
+            <a href="https://amzn.to/4vRy4Be" class="product-card__link" target="_blank" rel="noopener">Shop AG1</a>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/lodge-skillet.png" alt="Lodge Seasoned Cast Iron Skillet 12 inch" />
+            </div>
+            <h3 class="product-card__name">Lodge Seasoned Cast Iron Skillet, 12"</h3>
+            <p class="product-card__price">Under $50</p>
+            <p class="product-card__note">No matter which cast iron you choose, this is a must-have. Bacon and eggs in the morning, a hearty steak at night — one pan, does both.</p>
+            <a href="https://amzn.to/4p7zS6n" class="product-card__link" target="_blank" rel="noopener">Shop Lodge</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+    <!-- KNOWLEDGE -->
+    <section class="pillar-section" id="knowledge">
+      <div class="pillar-section__inner">
+        <div class="pillar-section__header reveal">
+          <p class="pillar-section__eyebrow">Pillar Four</p>
+          <h2 class="pillar-section__title">Knowledge</h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/atomic-habits.png" alt="Atomic Habits by James Clear" />
+            </div>
+            <h3 class="product-card__name">Atomic Habits</h3>
+            <p class="product-card__price">$18.00</p>
+            <p class="product-card__note">The one everyone recommends, and the one that actually holds up. Small, consistent changes over willpower.</p>
+            <a href="https://amzn.to/44NOdM1" class="product-card__link" target="_blank" rel="noopener">Shop the Book</a>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/atlas-of-the-heart.png" alt="Atlas of the Heart by Brené Brown" />
+            </div>
+            <h3 class="product-card__name">Atlas of the Heart</h3>
+            <p class="product-card__price">$13.65</p>
+            <p class="product-card__note">Emotional vocabulary most of us were never taught. Goes further than most self-improvement books bother to.</p>
+            <a href="https://amzn.to/4fkDwGS" class="product-card__link" target="_blank" rel="noopener">Shop the Book</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+    <!-- CONNECTION -->
+    <section class="pillar-section" id="connection">
+      <div class="pillar-section__inner">
+        <div class="pillar-section__header reveal">
+          <p class="pillar-section__eyebrow">Pillar Five</p>
+          <h2 class="pillar-section__title">Connection</h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/connect-cards.png" alt="Connect Cards: Get to Know You Edition" />
+            </div>
+            <h3 class="product-card__name">Connect Cards: Get to Know You</h3>
+            <p class="product-card__price">$25.00</p>
+            <p class="product-card__note">100 questions built to break the ice and spark real conversation — with a partner, friends, or family. Simple, and it works.</p>
+            <a href="https://amzn.to/3SKc6S1" class="product-card__link" target="_blank" rel="noopener">Shop Connect Cards</a>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card__image">
+              <img src="images/tecovas-weekender.png" alt="Tecovas Bartlett Large Weekender in cognac leather" />
+            </div>
+            <h3 class="product-card__name">Tecovas Bartlett Large Weekender</h3>
+            <p class="product-card__price">$645.00</p>
+            <p class="product-card__note">I actually own the medium — bought it for $400, and it's held its value every year I've had it. The large shown here follows the same cowhide, same construction. Either size is the kind of bag you own for the next twenty years.</p>
+            <a href="https://go.shopmy.us/p-68589366" class="product-card__link" target="_blank" rel="noopener">Shop Tecovas</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="walnut-divider"></div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer__logo">Aeilus</div>
+      <p class="footer__tagline">For Men Becoming</p>
+      <ul class="footer__links">
+        <li><a href="index.html">Welcome</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="dailypulse.html">Daily Pulse</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="shop.html">The Essentials</a></li>
+      </ul>
+      <div class="footer__signup" style="max-width:320px;margin:1.75rem auto 0;padding-top:1.25rem;border-top:1px solid rgba(212,184,150,0.15);text-align:center;">
+        <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.9rem;color:rgba(212,184,150,0.85);margin:0 0 0.85rem;">For men becoming. One reflection a week.</p>
+        <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1784810");</style>
+        <style type="text/css">
+          #mlb2-44145290.ml-form-embedContainer{box-sizing:border-box;display:table;margin:0 auto;width:100%!important;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedWrapper.embedForm{max-width:320px;width:100%;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-align-center{text-align:center;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedBody{padding:0;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-fieldRow{margin:0 0 10px 0;width:100%;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedSubmit{margin:0;float:none;width:100%;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedWrapper{background-color:transparent!important;}
+          #mlb2-44145290.ml-form-embedContainer input[name="fields[email]"]{font-family:'Inter',sans-serif!important;background:transparent!important;border:1px solid rgba(212,184,150,0.4)!important;color:rgba(250,246,240,0.95)!important;padding:9px 14px!important;border-radius:2px!important;text-align:center;font-size:13px!important;}
+          #mlb2-44145290.ml-form-embedContainer input[name="fields[email]"]::placeholder{color:rgba(212,184,150,0.6)!important;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedSubmit button{font-family:'Inter',sans-serif!important;background-color:rgba(212,184,150,0.9)!important;color:#4A2510!important;border:none!important;padding:9px 18px!important;border-radius:2px!important;font-weight:600!important;font-size:13px!important;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-embedSubmit button:hover{background-color:#FAF6F0!important;}
+          #mlb2-44145290.ml-form-embedContainer .ml-form-successContent h4,#mlb2-44145290.ml-form-embedContainer .ml-form-successContent p{font-family:'Inter',sans-serif!important;color:rgba(212,184,150,0.9)!important;font-size:13px!important;}
+          .ml-form-embedSubmitLoad{display:inline-block;width:20px;height:20px;}
+          .ml-form-embedSubmitLoad:after{content:" ";display:block;width:11px;height:11px;margin:1px;border-radius:50%;border:4px solid #fff;border-color:#fff #fff #fff transparent;animation:ml-form-embedSubmitLoad 1.2s linear infinite;}
+          @keyframes ml-form-embedSubmitLoad{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+          .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+        </style>
+        <div id="mlb2-44145290" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-44145290">
+          <div class="ml-form-align-center ">
+            <div class="ml-form-embedWrapper embedForm">
+              <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                <div class="ml-form-embedContent" style="margin-bottom:0px;"></div>
+                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2534542/forms/194062937176933829/subscribe" data-code="" method="post" target="_blank">
+                  <div class="ml-form-formContent">
+                    <div class="ml-form-fieldRow ml-last-item">
+                      <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                        <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Email" autocomplete="email">
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="fields[signup_source]" value="footer">
+                  <input type="hidden" name="ml-submit" value="1">
+                  <div class="ml-form-embedSubmit">
+                    <button type="submit" class="primary">Subscribe</button>
+                    <button disabled="disabled" style="display:none;" type="button" class="loading">
+                      <div class="ml-form-embedSubmitLoad"></div>
+                      <span class="sr-only">Loading...</span>
+                    </button>
+                  </div>
+                  <input type="hidden" name="anticsrf" value="true">
+                </form>
+              </div>
+              <div class="ml-form-successBody row-success" style="display:none">
+                <div class="ml-form-successContent">
+                  <h4>Thank you!</h4>
+                  <p>You have successfully joined our subscriber list.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          function ml_webform_success_44145290() {
+            var $ = ml_jQuery || jQuery;
+            $('.ml-subscribe-form-44145290 .row-success').show();
+            $('.ml-subscribe-form-44145290 .row-form').hide();
+          }
+        </script>
+        <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+        <script>fetch("https://assets.mailerlite.com/jsonp/2534542/forms/194062937176933829/takel")</script>
+      </div>
+
+      <p class="footer__copy" style="margin-bottom:0.4rem;"><a href="mailto:hello@aeilus.com" style="color:rgba(212,184,150,0.7);border-bottom:1px solid rgba(212,184,150,0.3);">hello@aeilus.com</a></p>
+      <p class="footer__copy">&copy; 2026 Aeilus. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
