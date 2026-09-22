@@ -775,10 +775,10 @@ footer::before {
   .split-opening { grid-template-columns: 1fr; grid-template-rows: auto 5px auto; min-height: auto; }
   .split-opening__divider { background: linear-gradient(to right, transparent, var(--earth), var(--dune), var(--earth), transparent); height: 5px; width: 100%; }
   .split-opening__left-inner { padding: var(--spacing-lg) var(--spacing-md); }
-  .split-opening__right { min-height: 55vh; }
-  .split-opening__right { grid-template-columns: 1fr; grid-template-rows: auto 220px; }
-  .split-opening__right-image { height: 220px; order: 1; }
-  .split-opening__right-inner { align-items: center; text-align: center; order: 2; }
+  .split-opening__right { min-height: auto; }
+  .split-opening__right { grid-template-columns: 1fr; grid-template-rows: 220px auto; }
+  .split-opening__right-image { height: 220px; width: 100%; order: 1; }
+  .split-opening__right-inner { align-items: center; text-align: center; order: 2; padding: var(--spacing-lg) var(--spacing-md); }
   .featured-article { grid-template-columns: 1fr; }
   .featured-article__image { min-height: 220px; }
   .featured-article__content { padding: 2rem; }
