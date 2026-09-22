@@ -776,9 +776,9 @@ footer::before {
   .split-opening__divider { background: linear-gradient(to right, transparent, var(--earth), var(--dune), var(--earth), transparent); height: 5px; width: 100%; }
   .split-opening__left-inner { padding: var(--spacing-lg) var(--spacing-md); }
   .split-opening__right { min-height: auto; }
-  .split-opening__right { grid-template-columns: 1fr; grid-template-rows: 220px auto; }
-  .split-opening__right-image { height: 220px; width: 100%; order: 1; }
-  .split-opening__right-inner { align-items: center; text-align: center; order: 2; padding: var(--spacing-lg) var(--spacing-md); }
+  .split-opening__right { display: grid; grid-template-columns: 100%; grid-template-rows: 220px auto; }
+  .split-opening__right-image { grid-row: 1 / 2; grid-column: 1 / 2; height: 220px; width: 100%; max-width: 100%; }
+  .split-opening__right-inner { grid-row: 2 / 3; grid-column: 1 / 2; align-items: center; text-align: center; padding: var(--spacing-lg) var(--spacing-md); }
   .featured-article { grid-template-columns: 1fr; }
   .featured-article__image { min-height: 220px; }
   .featured-article__content { padding: 2rem; }
