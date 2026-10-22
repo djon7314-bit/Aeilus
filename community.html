@@ -114,68 +114,6 @@
 
     <div class="walnut-divider"></div>
 
-    <!-- SHARE YOUR BECOMING -->
-    <section class="syb-section" style="--moon:#F0E8DC; --dune:#C4956A; --earth:#4A2510; background-color:var(--moon); color:var(--earth); padding:80px 24px; position:relative; overflow:hidden;">
-      <div style="max-width:640px; margin:0 auto; position:relative;">
-        <p style="font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--dune); font-weight:600; margin:0 0 20px;">Connection</p>
-        <h2 style="font-family:var(--font-display); font-weight:500; font-size:clamp(28px,5vw,40px); line-height:1.15; margin:0 0 24px;">Share Your Becoming</h2>
-        <p style="font-size:17px; line-height:1.7; color:rgba(74,37,16,0.85); margin:0 0 16px;">You don't have to have it figured out to belong here. Some of the most honest moments of growth happen quietly — a decision made, a habit broken, a conversation that changed something. We want to hear yours.</p>
-        <p style="font-size:17px; line-height:1.7; color:rgba(74,37,16,0.85); margin:0 0 16px;">This isn't about having the perfect story or the polished ending. It's about being honest with where you've been and where you're headed.</p>
-
-        <div style="margin:32px 0 40px; padding:28px 28px 28px 24px; background:rgba(196,149,106,0.12); border-left:2px solid var(--dune);">
-          <p style="font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--dune); font-weight:600; margin:0 0 14px;">A few starting points, if you need them</p>
-          <ul style="margin:0; padding:0; list-style:none;">
-            <li style="font-size:15.5px; line-height:1.6; margin-bottom:10px; padding-left:18px; position:relative;">— A moment you realized you were becoming someone different than before</li>
-            <li style="font-size:15.5px; line-height:1.6; margin-bottom:10px; padding-left:18px; position:relative;">— Something you had to unlearn</li>
-            <li style="font-size:15.5px; line-height:1.6; margin-bottom:10px; padding-left:18px; position:relative;">— A small daily practice that's quietly changed you</li>
-            <li style="font-size:15.5px; line-height:1.6; margin-bottom:0; padding-left:18px; position:relative;">— A relationship — with yourself, a parent, a partner — you're still working through</li>
-          </ul>
-        </div>
-
-        <form action="https://formspree.io/f/meeyvqgg" method="POST" style="display:flex; flex-direction:column; gap:22px;">
-          <div>
-            <label for="syb-name" style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">What should we call you?</label>
-            <input type="text" id="syb-name" name="name" placeholder="Name, first name only, or &ldquo;Anonymous&rdquo;" style="width:100%; box-sizing:border-box; font-family:'Inter',sans-serif; font-size:15.5px; padding:13px 14px; border:1px solid rgba(74,37,16,0.25); border-radius:4px; background:#fff; color:var(--earth);">
-          </div>
-
-          <div>
-            <label for="syb-story" style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">What's the moment or shift you want to share?</label>
-            <textarea id="syb-story" name="story" required placeholder="A few sentences to a few paragraphs — however much it takes." style="width:100%; box-sizing:border-box; font-family:'Inter',sans-serif; font-size:15.5px; padding:13px 14px; border:1px solid rgba(74,37,16,0.25); border-radius:4px; background:#fff; color:var(--earth); min-height:130px; resize:vertical;"></textarea>
-          </div>
-
-          <div>
-            <label for="syb-pillar" style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">Which pillar does this touch most? <span style="font-weight:400; color:rgba(74,37,16,0.5);">(optional)</span></label>
-            <select id="syb-pillar" name="pillar" style="width:100%; box-sizing:border-box; font-family:'Inter',sans-serif; font-size:15.5px; padding:13px 14px; border:1px solid rgba(74,37,16,0.25); border-radius:4px; background:#fff; color:var(--earth);">
-              <option value="">Select one</option>
-              <option value="mind">Mind</option>
-              <option value="body">Body</option>
-              <option value="fuel">Fuel</option>
-              <option value="knowledge">Knowledge</option>
-              <option value="connection">Connection</option>
-            </select>
-          </div>
-
-          <div>
-            <label style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">Can we feature this on Aeilus?</label>
-            <div style="display:flex; flex-direction:column; gap:10px;">
-              <label style="display:flex; align-items:center; gap:10px; font-size:15px;"><input type="radio" name="permission" value="named" required style="accent-color:var(--dune); width:16px; height:16px;"> Yes, with my name</label>
-              <label style="display:flex; align-items:center; gap:10px; font-size:15px;"><input type="radio" name="permission" value="anonymous" required style="accent-color:var(--dune); width:16px; height:16px;"> Yes, but keep me anonymous</label>
-              <label style="display:flex; align-items:center; gap:10px; font-size:15px;"><input type="radio" name="permission" value="private" required style="accent-color:var(--dune); width:16px; height:16px;"> Not yet — just wanted to share</label>
-            </div>
-          </div>
-
-          <div>
-            <label for="syb-notes" style="display:block; font-size:13px; letter-spacing:0.03em; font-weight:600; margin-bottom:8px; color:var(--earth);">Anything else you want us to know? <span style="font-weight:400; color:rgba(74,37,16,0.5);">(optional)</span></label>
-            <textarea id="syb-notes" name="notes" style="width:100%; box-sizing:border-box; font-family:'Inter',sans-serif; font-size:15.5px; padding:13px 14px; border:1px solid rgba(74,37,16,0.25); border-radius:4px; background:#fff; color:var(--earth); min-height:80px; resize:vertical;"></textarea>
-          </div>
-
-          <button type="submit" style="align-self:flex-start; margin-top:8px; background:var(--earth); color:var(--moon); border:none; font-family:'Inter',sans-serif; font-weight:600; font-size:15px; letter-spacing:0.02em; padding:14px 32px; border-radius:4px; cursor:pointer;">Submit</button>
-        </form>
-      </div>
-    </section>
-
-    <div class="walnut-divider"></div>
-
   </main>
 
   <footer>
