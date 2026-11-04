@@ -96,3 +96,36 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Bot protection for MailerLite signup forms.
+// Adds a hidden "honeypot" field that people never see but bots fill in,
+// and ignores submissions sent within 3 seconds of the page loading.
+(function () {
+  const loadedAt = Date.now();
+  const MIN_MS = 3000;
+
+  document.querySelectorAll('form.ml-block-form').forEach(form => {
+    const trap = document.createElement('div');
+    trap.setAttribute('aria-hidden', 'true');
+    trap.style.cssText = 'position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;';
+    trap.innerHTML = '<label>Leave this field empty <input type="text" name="aeilus_hp" value="" tabindex="-1" autocomplete="off"></label>';
+    form.appendChild(trap);
+  });
+
+  function guard(e) {
+    const form = e.target.closest && e.target.closest('form.ml-block-form');
+    if (!form) return;
+    if (e.type === 'click' && !e.target.closest('button[type="submit"], input[type="submit"]')) return;
+    const hp = form.querySelector('input[name="aeilus_hp"]');
+    const isBot = (hp && hp.value.trim() !== '') || (Date.now() - loadedAt < MIN_MS);
+    if (isBot) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    } else if (hp) {
+      hp.disabled = true; // keep the trap field out of what gets sent to MailerLite
+    }
+  }
+
+  document.addEventListener('submit', guard, true);
+  document.addEventListener('click', guard, true);
+})();
